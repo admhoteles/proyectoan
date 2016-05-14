@@ -2,22 +2,6 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group>
-            <file>file:/C:/Users/macaco/Documents/NetBeansProjects/proyectoAn/src/java/Negocio/ContorladorHuesped.java</file>
-            <file>file:/C:/Users/macaco/Documents/NetBeansProjects/proyectoAn/src/java/co/ufps/edu/dao/cuartoDAO.java</file>
-            <file>file:/C:/Users/macaco/Documents/NetBeansProjects/proyectoAn/src/java/co/ufps/edu/dao/habitacionasignadaDAO.java</file>
-            <file>file:/C:/Users/macaco/Documents/NetBeansProjects/proyectoAn/src/java/co/ufps/edu/dto/cuarto.java</file>
-            <file>file:/C:/Users/macaco/Documents/NetBeansProjects/proyectoAn/web/index.jsp</file>
-            <file>file:/C:/Users/macaco/Documents/NetBeansProjects/proyectoAn/src/java/ufps/edu/co/utils/conexion/prueba.java</file>
-            <file>file:/C:/Users/macaco/Documents/NetBeansProjects/proyectoAn/src/java/co/ufps/edu/dao/HuespedDAO.java</file>
-            <file>file:/C:/Users/macaco/Documents/NetBeansProjects/proyectoAn/web/buscar.jsp</file>
-            <file>file:/C:/Users/macaco/Documents/NetBeansProjects/proyectoAn/src/java/co/ufps/edu/dto/factura.java</file>
-            <file>file:/C:/Users/macaco/Documents/NetBeansProjects/proyectoAn/src/java/co/ufps/edu/dto/habitacionasignada.java</file>
-            <file>file:/C:/Users/macaco/Documents/NetBeansProjects/proyectoAn/src/java/co/ufps/edu/dao/facturaDAO.java</file>
-            <file>file:/C:/Users/macaco/Documents/NetBeansProjects/proyectoAn/web/registrado.jsp</file>
-            <file>file:/C:/Users/macaco/Documents/NetBeansProjects/proyectoAn/src/java/co/ufps/edu/dto/Huesped.java</file>
-            <file>file:/C:/Users/macaco/Documents/NetBeansProjects/proyectoAn/src/java/facade/ControladorNegocio.java</file>
-            <file>file:/C:/Users/macaco/Documents/NetBeansProjects/proyectoAn/src/java/ufps/edu/co/utils/conexion/Conexion.java</file>
-        </group>
+        <group/>
     </open-files>
 </project-private>
