@@ -9,13 +9,13 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import ufps.edu.co.utils.conexion.Conexion;
-import dto.principal;
+import co.ufps.edu.dto.principal;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import pkgMenu.clsConn;
+import ufps.edu.co.utils.conexion.clsConn;
 
 /**
  *

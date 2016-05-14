@@ -2,6 +2,18 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group/>
+        <group>
+            <file>file:/F:/proyectoanalisis2016/proyectoan/proyectoAn/src/java/co/ufps/edu/dto/habitaciones.java</file>
+            <file>file:/F:/proyectoanalisis2016/proyectoan/proyectoAn/web/adm/eliminar.jsp</file>
+            <file>file:/F:/proyectoanalisis2016/proyectoan/proyectoAn/src/java/co/ufps/edu/dao/datoshoteldao.java</file>
+            <file>file:/F:/proyectoanalisis2016/proyectoan/proyectoAn/web/adm/registradoHotel.jsp</file>
+            <file>file:/F:/proyectoanalisis2016/proyectoan/proyectoAn/src/java/co/ufps/edu/dao/daohabitaciones.java</file>
+            <file>file:/F:/proyectoanalisis2016/proyectoan/proyectoAn/src/java/ufps/edu/co/utils/conexion/clsConn.java</file>
+            <file>file:/F:/proyectoanalisis2016/proyectoan/proyectoAn/web/adm/registrado.jsp</file>
+            <file>file:/F:/proyectoanalisis2016/proyectoan/proyectoAn/src/java/co/ufps/edu/dao/principaldao.java</file>
+            <file>file:/F:/proyectoanalisis2016/proyectoan/proyectoAn/src/java/co/ufps/edu/dto/principal.java</file>
+            <file>file:/F:/proyectoanalisis2016/proyectoan/proyectoAn/web/adm/editar.jsp</file>
+            <file>file:/F:/proyectoanalisis2016/proyectoan/proyectoAn/web/adm/Datos_habitacion.jsp</file>
+        </group>
     </open-files>
 </project-private>

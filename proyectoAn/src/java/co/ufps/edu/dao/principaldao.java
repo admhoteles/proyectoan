@@ -1,7 +1,7 @@
 package dao;
 
-import dto.habitaciones;
-import dto.principal;
+import co.ufps.edu.dto.habitaciones;
+import co.ufps.edu.dto.principal;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;

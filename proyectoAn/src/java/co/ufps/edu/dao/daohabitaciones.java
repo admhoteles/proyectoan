@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package dao;
+package co.ufps.edu.dao;
 
-import dto.habitaciones;
+import co.ufps.edu.dto.habitaciones;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -13,7 +13,7 @@ import java.util.Arrays;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
-import pkgMenu.clsConn;
+import ufps.edu.co.utils.conexion.clsConn;
 
 
 /**
@@ -100,7 +100,8 @@ return false;
                               tabla+="<td class=\"warning text-center\">"+msm.getInt(1)+"</td>";
                               tabla+="<td class=\"warning text-center\">"+msm.getString(2)+"</td>";
                               tabla+="<td class=\"warning text-center\">"+msm.getString(3)+"</td>";
-                              tabla+="<td class=\"warning text-center\">"+"<form class=\"form-horizontal\" action=\"eliminar.jsp\" method=\"post\"><input type=\"hidden\" name=\"id\" value=\""+msm.getInt(1)+"\" ><input type=\"hidden\" name=\"tabla\" value=\"habitaciones\" ><button type=\"warning\" class=\"btn btn-info btn-md pull-right\">Eliminar</button></td>";
+                              tabla+="<td class=\"warning text-center\">"+"<form class=\"form-horizontal\" action=\"eliminar.jsp\" method=\"post\"><input type=\"hidden\" name=\"id\" value=\""+msm.getInt(1)+"\" ><input type=\"hidden\" name=\"tabla\" value=\"habitaciones\" ><button type=\"warning\" class=\"btn btn-danger\">Eliminar</button>"
+                                      +"<form class=\"form-horizontal\" action=\"editar.jsp\" method=\"post\"><input type=\"hidden\" name=\"id\" value=\""+msm.getInt(1)+"\" ><input type=\"hidden\" name=\"tabla\" value=\"habitaciones\" ><button type=\"warning\" class=\"btn btn-warning\">Editar</button>"+ "</td>";
           tabla+="</tr>";
 
             }
