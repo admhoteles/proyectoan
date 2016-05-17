@@ -27,4 +27,3 @@
     
     response.sendRedirect("Datos_hotel.jsp");
 %>
-<j

@@ -1,4 +1,4 @@
-package dao;
+package co.ufps.edu.dao;
 
 import co.ufps.edu.dto.habitaciones;
 import co.ufps.edu.dto.principal;

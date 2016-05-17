@@ -1,10 +1,15 @@
 <%-- 
-    Document   : Datos_hotel
-    Created on : 4/05/2016, 06:45:15 AM
+    Document   : editar
+    Created on : 14/05/2016, 05:46:44 PM
     Author     : EDINSON
 --%>
 
-<%@page import="co.ufps.edu.dao.daohabitaciones"%>
+  
+ <%
+        int Param1= Integer.parseInt(request.getParameter ("id"));
+        System.out.println(Param1+"eliminar");
+        %>
+  <%@page import="co.ufps.edu.dao.daohabitaciones"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE>
 <html>
@@ -12,7 +17,7 @@
    
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>REGISTRO DE HABITACIONES</title>
+<title>REGISTRO ACTUALIZACION DE HABITACIONES</title>
 
 <link href="css/bootstrap.min.css" rel="stylesheet">
 <link href="css/datepicker3.css" rel="stylesheet">
@@ -103,7 +108,7 @@
 									
 		<div class="row">
 			<div class="col-lg-12">
-				<h1 class="page-header text-center">Datos de las habitaciones</h1>
+				<h1 class="page-header text-center">Actualizar datos de las habitacion</h1>
 			</div>
 		</div><!--/.row-->
 		
@@ -111,22 +116,25 @@
 		<div class="row">
 			<div class="col-md-12">
 				<div class="panel panel-default">
-					<div class="panel-heading"><svg class="glyph stroked email"><use xlink:href="#stroked-email"></use></svg> Formulario Datos de la habitacion</div>
-					<div class="panel-body">
-						<form class="form-horizontal" action="registradohabitacion.jsp" method="post">
+                                    <%
+                                        out.println("<div class=\"panel-heading\"><svg class=\"glyph stroked email\"><use xlink:href=\"#stroked-email\"></use></svg> Actualizacion datos de la habitacion "+Param1+"</div>");
+					%>
+                                                <div class="panel-body">
+						<form class="form-horizontal" action="actualizarhabitacion.jsp" method="post">
 							<fieldset>
 								<!-- id input-->
-								<div class="form-group">	
-                                                                        <label class="col-md-2 control-label" for="idh">ID de la habitacion</label>
-									<div class="col-md-10">
-									<input id="idh" name="idh" type="number"  class="form-control" required>
-									</div>
-								</div>
+								<% ;
+                                                                    out.print("<div class=\"form-group\"> <label class=\"col-md-2 control-label\" for=\"idh\">Id Habitacion </label>"+
+									"<div class=\"col-md-10\">"+
+									"<input id=\"idh\" name=\"idh\"type=\"hidden\"  class=\"form-control\" value=\""+Param1+"placeholder=\""+Param1+"\">"+
+									"<p class=\"form-control-static\"> Habitacion "+Param1+"</p>"+
+                                                                            "</div></div>");
+                                                                                %>
                                                                 <!-- tipo input-->
 								<div class="form-group">
 									<label class="col-md-2 control-label" for="tipo">Tipo de Habitacion</label>
 									<div class="col-md-10">
-                                                                           <select class="form-control" name="tipo">
+                                                                            <select class="form-control" name="tipo">
                                                                         <option selected value="0"> Elige una opción </option>
                                                                         <%
                                                                         daohabitaciones hab=new daohabitaciones();
@@ -134,10 +142,9 @@
                                                                         out.println(m);
                                                                         %>
 									</select>
-									
 									</div>
 								</div>
-                                                                <!-- direccion input-->
+                                                                <!-- Estado input-->
 								<div class="form-group">
 									<label class="col-md-2 control-label" for="estado">Estado de la Habitacion</label>
 									<div class="col-md-10">
@@ -168,13 +175,13 @@
 								<!-- Form actions -->
 								<div class="form-group">
 									<div class="col-md-12 widget-right btn btn-danger">
-										<button type="submit" class="btn btn-info btn-md pull-right">Guardar</button>
+										<button type="submit" class="btn btn-info btn-md pull-right">Modificar</button>
 									</div>
 								</div>
 							</fieldset>
 						</form>
                                             <div class="row">
-			<div class="col-md-12">
+			<div class="col-lg-12">
 				<h1 class="page-header text-center">Listado de las habitaciones</h1>
 			</div>
 		</div><!--/.row-->
@@ -211,4 +218,4 @@
 </body>
 
 </html>
-
+</html>

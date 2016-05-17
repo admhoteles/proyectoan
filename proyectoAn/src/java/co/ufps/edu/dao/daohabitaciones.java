@@ -75,8 +75,12 @@ return false;
             if(h.getFoto()==null){
                 h.setFoto(msm.getString(5));
             }
-        }   } catch (SQLException ex) {
+        }   
+        String sql="UPDATE habitaciones SET id_hotel=1,tipo="+h.getTipo()+", estado="+h.getEstado()+", foto="+h.getFoto()+" WHERE id_hab="+h.getId()+";";
+    int i=getCnn().actualizar(sql);
+    } catch (SQLException ex) {
         Logger.getLogger(daohabitaciones.class.getName()).log(Level.SEVERE, null, ex);
+        
     }
      return "";
      }
@@ -96,12 +100,12 @@ return false;
                                    "\n" +"<tboby>";
        
        while(msm.next()){
-                tabla+="<tr class=\"success\">";
-                              tabla+="<td class=\"warning text-center\">"+msm.getInt(1)+"</td>";
-                              tabla+="<td class=\"warning text-center\">"+msm.getString(2)+"</td>";
-                              tabla+="<td class=\"warning text-center\">"+msm.getString(3)+"</td>";
-                              tabla+="<td class=\"warning text-center\">"+"<form class=\"form-horizontal\" action=\"eliminar.jsp\" method=\"post\"><input type=\"hidden\" name=\"id\" value=\""+msm.getInt(1)+"\" ><input type=\"hidden\" name=\"tabla\" value=\"habitaciones\" ><button type=\"warning\" class=\"btn btn-danger\">Eliminar</button>"
-                                      +"<form class=\"form-horizontal\" action=\"editar.jsp\" method=\"post\"><input type=\"hidden\" name=\"id\" value=\""+msm.getInt(1)+"\" ><input type=\"hidden\" name=\"tabla\" value=\"habitaciones\" ><button type=\"warning\" class=\"btn btn-warning\">Editar</button>"+ "</td>";
+                tabla+="<tr >";
+                              tabla+="<td class=\"text-center\">"+msm.getInt(1)+"</td>";
+                              tabla+="<td class=\"text-center\">"+msm.getString(2)+"</td>";
+                              tabla+="<td class=\"text-center\">"+msm.getString(3)+"</td>";
+                              tabla+="<td class=\"text-center\">"+"<form class=\"form-horizontal\" action=\"eliminar.jsp\" method=\"post\"><input type=\"hidden\" name=\"id\" value=\""+msm.getInt(1)+"\" ><input type=\"hidden\" name=\"tabla\" value=\"habitaciones\" ><button type=\"warning\" class=\"btn btn-danger btn-xs\"<a type=\"hidden\" onclick=\"return confirm('Seguro de eliminar?');\"></a>Eliminar</button></form>"
+                                      +"<form class=\"form-horizontal\" action=\"editarhabitacion.jsp\" method=\"post\"> <input type=\"hidden\" name=\"id\" value=\""+msm.getInt(1)+"\" ><input type=\"hidden\" name=\"tabla\" value=\"habitaciones\" ><button type=\"warning\" class=\"btn btn-warning btn-xs\">Editar</button></form>"+ "</td>";
           tabla+="</tr>";
 
             }
@@ -114,16 +118,38 @@ return false;
  public clsConn getCnn() {
         return cnn;
     }
- public void eliminar(){
-     System.out.println("esta en eliminar");
-     JOptionPane.showMessageDialog(null, "esta en eliminar");
+ public void eliminar(int id){
+   int   msm= getCnn().verificar("DELETE FROM habitaciones WHERE id_hab="+id+";");
+    
+    
  }
-  public static void main(String []args) throws SQLException{
-        
-       habitaciones h=new habitaciones(1,1,1,"holaaaaaa");
-       daohabitaciones d= new daohabitaciones();
-       d.habitaciones();
+  public String tiposHabitaciones(){
+       ResultSet    msm= getCnn().consultaTabla("SELECT id_tipo, nombre From tiposhabitaciones;");
+       String opcion=""; 
+    try {
+        while(msm.next()){
+             opcion+="<option value=\""+msm.getInt(1)+"\">"+msm.getString(2)+"</option>"; 
        
+        }
+    } catch (SQLException ex) {
+        Logger.getLogger(daohabitaciones.class.getName()).log(Level.SEVERE, null, ex);
+    }
+        return opcion;
+        }
+  
+public String estados(){
+       ResultSet    msm= getCnn().consultaTabla("SELECT id, descripcion From estadohabitacion;");
+       String opcion=""; 
+    try {
+        while(msm.next()){
+             opcion+="<option value=\""+msm.getInt(1)+"\">"+msm.getString(2)+"</option>"; 
        
-   }
-}
+        }
+    } catch (SQLException ex) {
+        Logger.getLogger(daohabitaciones.class.getName()).log(Level.SEVERE, null, ex);
+    }
+        return opcion;
+        }
+  }
+
+

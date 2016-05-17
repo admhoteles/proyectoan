@@ -6,7 +6,7 @@
 
 <%@page import="co.ufps.edu.dao.daohabitaciones"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
+<!DOCTYPE>
 <html>
     <head>
    
@@ -102,28 +102,16 @@
 		</div><!--/.row-->
 									
 		<div class="row">
-			<div class="col-xs-12 col-md-6 col-lg-6">
-				<div class="panel panel-blue panel-widget ">
-					<div class="row no-padding">
-						<div class="col-sm-3 col-lg-5 widget-left">
-                                                    <svg class="glyph stroked bag"><svg class="glyph stroked tag"><use xlink:href="#stroked-tag"/></svg>
-						</div>
-						<div class="col-sm-9 col-lg-7 widget-right">
-							
-                                                    <div class="text-muted"> <H4> DATOS DE LA HABITACION</H4> </div>
-						</div>
-					</div>
-				</div>
+			<div class="col-lg-12">
+				<h1 class="page-header text-center">Datos de las habitaciones</h1>
 			</div>
-			
-			
-			
 		</div><!--/.row-->
+		
 		
 		<div class="row">
 			<div class="col-md-12">
 				<div class="panel panel-default">
-					<div class="panel-heading"><svg class="glyph stroked email"><use xlink:href="#stroked-email"></use></svg> Formulario Datos del hotel</div>
+					<div class="panel-heading"><svg class="glyph stroked email"><use xlink:href="#stroked-email"></use></svg> Formulario Datos de la habitacion</div>
 					<div class="panel-body">
 						<form class="form-horizontal" action="registradohabitacion.jsp" method="post">
 							<fieldset>
@@ -138,7 +126,14 @@
 								<div class="form-group">
 									<label class="col-md-2 control-label" for="tipo">Tipo de Habitacion</label>
 									<div class="col-md-10">
-                                                                            <!-- aqui va una lista-->
+                                                                           <select class="form-control" name="tipo">
+                                                                        <option selected value="0"> Elige una opción </option>
+                                                                        <%
+                                                                        daohabitaciones hab=new daohabitaciones();
+                                                                        String m=hab.tiposHabitaciones();
+                                                                        out.println(m);
+                                                                        %>
+									</select>
 									
 									</div>
 								</div>
@@ -146,7 +141,14 @@
 								<div class="form-group">
 									<label class="col-md-2 control-label" for="estado">Estado de la Habitacion</label>
 									<div class="col-md-10">
-										<!-- aqui va una lista-->
+										 <select class="form-control" name="estado">
+                                                                        <option selected value="0"> Elige una opción </option>
+                                                                        <%
+                                                                        
+                                                                        String n=hab.estados();
+                                                                        out.println(n);
+                                                                        %>
+									</select>
 									</div>
 								</div>
 							
@@ -171,10 +173,17 @@
 								</div>
 							</fieldset>
 						</form>
+                                            <div class="row">
+			<div class="col-md-12">
+				<h1 class="page-header text-center">Listado de las habitaciones</h1>
+			</div>
+		</div><!--/.row-->
+		<div class="col-md-12">
                                               <%
             daohabitaciones h=new daohabitaciones();
            out.print(h.habitaciones());
             %>
+                </div>
 					</div>
 				</div>
 				
@@ -202,4 +211,4 @@
 </body>
 
 </html>
-</html>
+
