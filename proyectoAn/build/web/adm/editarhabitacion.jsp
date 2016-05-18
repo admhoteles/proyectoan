@@ -7,7 +7,6 @@
   
  <%
         int Param1= Integer.parseInt(request.getParameter ("id"));
-        System.out.println(Param1+"eliminar");
         %>
   <%@page import="co.ufps.edu.dao.daohabitaciones"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -123,7 +122,7 @@
 						<form class="form-horizontal" action="actualizarhabitacion.jsp" method="post">
 							<fieldset>
 								<!-- id input-->
-								<% ;
+								<% 
                                                                     out.print("<div class=\"form-group\"> <label class=\"col-md-2 control-label\" for=\"idh\">Id Habitacion </label>"+
 									"<div class=\"col-md-10\">"+
 									"<input id=\"idh\" name=\"idh\"type=\"hidden\"  class=\"form-control\" value=\""+Param1+"placeholder=\""+Param1+"\">"+
@@ -168,9 +167,7 @@
 								</div>
                                                                 
  
-                                                                   </div>	
-									</div>
-								</div>
+                                                                 
 								
 								<!-- Form actions -->
 								<div class="form-group">
@@ -180,6 +177,10 @@
 								</div>
 							</fieldset>
 						</form>
+                                                                          </div>	
+									</div>
+								</div>
+                                                                        </div>
                                             <div class="row">
 			<div class="col-lg-12">
 				<h1 class="page-header text-center">Listado de las habitaciones</h1>
@@ -191,7 +192,7 @@
            out.print(h.habitaciones());
             %>
                 </div>
-					</div>
+					
 				</div>
 				
         
@@ -217,5 +218,4 @@
 	</script>	
 </body>
 
-</html>
 </html>

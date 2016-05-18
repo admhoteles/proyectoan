@@ -160,10 +160,9 @@
 									</div>
 								</div>
                                                                 
- 
-                                                                   </div>	
-									</div>
-								</div>
+ 	
+									
+								
 								
 								<!-- Form actions -->
 								<div class="form-group">
@@ -173,6 +172,10 @@
 								</div>
 							</fieldset>
 						</form>
+                                            </div>
+                                        </div>         
+                                    </div>
+                                </div>    
                                             <div class="row">
 			<div class="col-md-12">
 				<h1 class="page-header text-center">Listado de las habitaciones</h1>
@@ -184,7 +187,7 @@
            out.print(h.habitaciones());
             %>
                 </div>
-					</div>
+					
 				</div>
 				
         

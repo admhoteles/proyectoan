@@ -4,7 +4,8 @@
     Author     : EDINSON
 --%>
 
-   <%@page import="co.ufps.edu.dao.daohabitaciones"%>
+   <%@page import="co.ufps.edu.dao.tipohabitaciondao"%>
+<%@page import="co.ufps.edu.dao.daohabitaciones"%>
 <!DOCTYPE>
 <html>
     <head>
@@ -38,6 +39,10 @@
                                h.eliminar(Integer.parseInt(Param1));
                                response.sendRedirect("Datos_habitacion.jsp");
                                break;
+        case "tiposhab": tipohabitaciondao t= new tipohabitaciondao();
+                            t.eliminar(Integer.parseInt(Param1));
+                            response.sendRedirect("Datos_tipo_habitacion.jsp");
+                            break;
  
         default:
      

@@ -1,17 +1,20 @@
 <%-- 
-    Document   : Datos_hotel
-    Created on : 4/05/2016, 06:45:15 AM
+    Document   : editartipohab
+    Created on : 17/05/2016, 09:07:20 PM
     Author     : EDINSON
 --%>
-
+<%@page import="co.ufps.edu.dao.tipohabitaciondao"%>
+<%
+        int Param1= Integer.parseInt(request.getParameter ("id"));
+        %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
+<!DOCTYPE>
 <html>
     <head>
    
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>REGISTRO DE HABITACIONES</title>
+<title>REGISTRO TIPO DE HABITACIONES</title>
 
 <link href="css/bootstrap.min.css" rel="stylesheet">
 <link href="css/datepicker3.css" rel="stylesheet">
@@ -101,22 +104,9 @@
 		</div><!--/.row-->
 									
 		<div class="row">
-			<div class="col-xs-12 col-md-6 col-lg-6">
-				<div class="panel panel-blue panel-widget ">
-					<div class="row no-padding">
-						<div class="col-sm-3 col-lg-5 widget-left">
-                                                    <svg class="glyph stroked bag"><svg class="glyph stroked tag"><use xlink:href="#stroked-tag"/></svg>
-						</div>
-						<div class="col-sm-9 col-lg-7 widget-right">
-							
-                                                    <div class="text-muted"> <H4> DATOS PROPIEDADES DE HABITACION</H4> </div>
-						</div>
-					</div>
-				</div>
+			<div class="col-lg-12">
+				<h1 class="page-header text-center">Datos tipo de la habitacion</h1>
 			</div>
-			
-			
-			
 		</div><!--/.row-->
 		
 		<div class="row">
@@ -124,35 +114,28 @@
 				<div class="panel panel-default">
 					<div class="panel-heading"><svg class="glyph stroked email"><use xlink:href="#stroked-email"></use></svg> Formulario Datos propiedades de la habitacion</div>
 					<div class="panel-body">
-						<form class="form-horizontal" action="registradopropiedadesHab.jsp" method="post">
-							<fieldset>
+						<form class="form-horizontal" action="actualizar_tipo_habitacion.jsp" method="post">
+                                                    <fieldset>
 								<!-- id input-->
-								<div class="form-group">	
-                                                                        <label class="col-md-2 control-label" for="idh">ID de la propiedad</label>
-									<div class="col-md-10">
-									<input id="idh" name="idh" type="number"  class="form-control" required>
-									</div>
-								</div>
-                                                                
-								
-							
-								<!-- Nombre input-->
-								<div class="form-group">
-									<label class="col-md-2 control-label" for="name">Descripcion</label>
+								<% 
+                                                                    out.print("<div class=\"form-group\"> <label class=\"col-md-2 control-label\" for=\"idh\">Tipo de Habitacion </label>"+
+									"<div class=\"col-md-10\">"+
+									"<input id=\"idh\" name=\"idh\"type=\"hidden\"  class=\"form-control\" value=\""+Param1+"placeholder=\""+Param1+"\">"+
+									"<p class=\"form-control-static\"> "+Param1+"</p>"+
+                                                                            "</div></div>");
+                                                                                %>
+                                                                <!-- name input -->
+                                                                <div class="form-group">
+									<label class="col-md-2 control-label" for="name">Nombre del tipo de habitacion</label>
 									<div class="col-md-10">
 										<input id="name" name="name" type="text" placeholder="Nombre de la descripcion " class="form-control">
 									</div>
 								</div>
                                                                 <!-- Precio input-->
 								<div class="form-group">
-									<label class="col-md-2 control-label" for="porc">Procentaje incremento</label>
+									<label class="col-md-2 control-label" for="precio">Precio base</label>
 									<div class="col-md-10">
-										<input id="porc" name="porc" type="number" class="form-control">
-									</div>
-								</div>
-                                                                
- 
-                                                                   </div>	
+										<input id="precio" name="precio" type="number" class="form-control">
 									</div>
 								</div>
 								
@@ -166,7 +149,22 @@
 						</form>
 					</div>
 				</div>
-				
+                            </div>
+                </div>
+		<div class="row">
+			<div class="col-md-12">
+				<h1 class="page-header text-center">Listado tipos de las habitaciones</h1>
+			</div>
+		</div><!--/.row-->
+		<div class="col-md-12">
+            <%
+            tipohabitaciondao tipoh=new tipohabitaciondao();
+           out.print(tipoh.tipos());
+            %>
+                </div>
+					
+				</div>	
+                 
 				
 		
 		  
@@ -191,4 +189,4 @@
 </body>
 
 </html>
-</html>
+

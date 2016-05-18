@@ -57,11 +57,11 @@ public class clsConn implements Serializable{
             st=getCon().createStatement();
             r=st.executeQuery(sql);
             r.next();
-            return r.getString(5);
+            return r.getString(1);
         }
         catch(SQLException e){
            System.out.print(e.toString());
-            return "-1";
+            return "0";
         }
     }
  public String buscarTodo(String sql,int x){

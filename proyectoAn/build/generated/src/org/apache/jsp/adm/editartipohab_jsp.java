@@ -3,9 +3,9 @@ package org.apache.jsp.adm;
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.jsp.*;
-import co.ufps.edu.dao.daohabitaciones;
+import co.ufps.edu.dao.tipohabitaciondao;
 
-public final class Datos_005fhabitacion_jsp extends org.apache.jasper.runtime.HttpJspBase
+public final class editartipohab_jsp extends org.apache.jasper.runtime.HttpJspBase
     implements org.apache.jasper.runtime.JspSourceDependent {
 
   private static final JspFactory _jspxFactory = JspFactory.getDefaultFactory();
@@ -42,8 +42,11 @@ public final class Datos_005fhabitacion_jsp extends org.apache.jasper.runtime.Ht
       _jspx_out = out;
       _jspx_resourceInjector = (org.glassfish.jsp.api.ResourceInjector) application.getAttribute("com.sun.appserv.jsp.resource.injector");
 
-      out.write("\n");
-      out.write("\n");
+      out.write('\n');
+      out.write('\n');
+
+        int Param1= Integer.parseInt(request.getParameter ("id"));
+        
       out.write("\n");
       out.write("\n");
       out.write("<!DOCTYPE>\n");
@@ -52,7 +55,7 @@ public final class Datos_005fhabitacion_jsp extends org.apache.jasper.runtime.Ht
       out.write("   \n");
       out.write("<meta charset=\"utf-8\">\n");
       out.write("<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n");
-      out.write("<title>REGISTRO DE HABITACIONES</title>\n");
+      out.write("<title>REGISTRO TIPO DE HABITACIONES</title>\n");
       out.write("\n");
       out.write("<link href=\"css/bootstrap.min.css\" rel=\"stylesheet\">\n");
       out.write("<link href=\"css/datepicker3.css\" rel=\"stylesheet\">\n");
@@ -143,70 +146,31 @@ public final class Datos_005fhabitacion_jsp extends org.apache.jasper.runtime.Ht
       out.write("\t\t\t\t\t\t\t\t\t\n");
       out.write("\t\t<div class=\"row\">\n");
       out.write("\t\t\t<div class=\"col-lg-12\">\n");
-      out.write("\t\t\t\t<h1 class=\"page-header text-center\">Datos de las habitaciones</h1>\n");
+      out.write("\t\t\t\t<h1 class=\"page-header text-center\">Datos tipo de la habitacion</h1>\n");
       out.write("\t\t\t</div>\n");
       out.write("\t\t</div><!--/.row-->\n");
-      out.write("\t\t\n");
       out.write("\t\t\n");
       out.write("\t\t<div class=\"row\">\n");
       out.write("\t\t\t<div class=\"col-md-12\">\n");
       out.write("\t\t\t\t<div class=\"panel panel-default\">\n");
-      out.write("\t\t\t\t\t<div class=\"panel-heading\"><svg class=\"glyph stroked email\"><use xlink:href=\"#stroked-email\"></use></svg> Formulario Datos de la habitacion</div>\n");
+      out.write("\t\t\t\t\t<div class=\"panel-heading\"><svg class=\"glyph stroked email\"><use xlink:href=\"#stroked-email\"></use></svg> Formulario Datos propiedades de la habitacion</div>\n");
       out.write("\t\t\t\t\t<div class=\"panel-body\">\n");
-      out.write("\t\t\t\t\t\t<form class=\"form-horizontal\" action=\"registradohabitacion.jsp\" method=\"post\">\n");
-      out.write("\t\t\t\t\t\t\t<fieldset>\n");
-      out.write("\t\t\t\t\t\t\t\t<!-- id input-->\n");
-      out.write("\t\t\t\t\t\t\t\t<div class=\"form-group\">\t\n");
-      out.write("                                                                        <label class=\"col-md-2 control-label\" for=\"idh\">ID de la habitacion</label>\n");
-      out.write("\t\t\t\t\t\t\t\t\t<div class=\"col-md-10\">\n");
-      out.write("\t\t\t\t\t\t\t\t\t<input id=\"idh\" name=\"idh\" type=\"number\"  class=\"form-control\" required>\n");
-      out.write("\t\t\t\t\t\t\t\t\t</div>\n");
-      out.write("\t\t\t\t\t\t\t\t</div>\n");
-      out.write("                                                                <!-- tipo input-->\n");
+      out.write("\t\t\t\t\t\t<form class=\"form-horizontal\" action=\"registrado_tipo_Hab.jsp\" method=\"post\">\n");
+      out.write("                                                    <fieldset>\n");
+      out.write("\t\t\t\t\t\t\t\t<!-- Nombre input-->\n");
       out.write("\t\t\t\t\t\t\t\t<div class=\"form-group\">\n");
-      out.write("\t\t\t\t\t\t\t\t\t<label class=\"col-md-2 control-label\" for=\"tipo\">Tipo de Habitacion</label>\n");
+      out.write("\t\t\t\t\t\t\t\t\t<label class=\"col-md-2 control-label\" for=\"name\">Nombre del tipo de habitacion</label>\n");
       out.write("\t\t\t\t\t\t\t\t\t<div class=\"col-md-10\">\n");
-      out.write("                                                                           <select class=\"form-control\" name=\"tipo\">\n");
-      out.write("                                                                        <option selected value=\"0\"> Elige una opción </option>\n");
-      out.write("                                                                        ");
-
-                                                                        daohabitaciones hab=new daohabitaciones();
-                                                                        String m=hab.tiposHabitaciones();
-                                                                        out.println(m);
-                                                                        
-      out.write("\n");
-      out.write("\t\t\t\t\t\t\t\t\t</select>\n");
-      out.write("\t\t\t\t\t\t\t\t\t\n");
+      out.write("\t\t\t\t\t\t\t\t\t\t<input id=\"name\" name=\"name\" type=\"text\" placeholder=\"Nombre de la descripcion \" class=\"form-control\">\n");
       out.write("\t\t\t\t\t\t\t\t\t</div>\n");
       out.write("\t\t\t\t\t\t\t\t</div>\n");
-      out.write("                                                                <!-- direccion input-->\n");
+      out.write("                                                                <!-- Precio input-->\n");
       out.write("\t\t\t\t\t\t\t\t<div class=\"form-group\">\n");
-      out.write("\t\t\t\t\t\t\t\t\t<label class=\"col-md-2 control-label\" for=\"estado\">Estado de la Habitacion</label>\n");
+      out.write("\t\t\t\t\t\t\t\t\t<label class=\"col-md-2 control-label\" for=\"precio\">Precio base</label>\n");
       out.write("\t\t\t\t\t\t\t\t\t<div class=\"col-md-10\">\n");
-      out.write("\t\t\t\t\t\t\t\t\t\t <select class=\"form-control\" name=\"estado\">\n");
-      out.write("                                                                        <option selected value=\"0\"> Elige una opción </option>\n");
-      out.write("                                                                        ");
-
-                                                                        
-                                                                        String n=hab.estados();
-                                                                        out.println(n);
-                                                                        
-      out.write("\n");
-      out.write("\t\t\t\t\t\t\t\t\t</select>\n");
+      out.write("\t\t\t\t\t\t\t\t\t\t<input id=\"precio\" name=\"precio\" type=\"number\" class=\"form-control\">\n");
       out.write("\t\t\t\t\t\t\t\t\t</div>\n");
       out.write("\t\t\t\t\t\t\t\t</div>\n");
-      out.write("\t\t\t\t\t\t\t\n");
-      out.write("\t\t\t\t\t\t\t\t<!-- foto input-->\n");
-      out.write("\t\t\t\t\t\t\t\t<div class=\"form-group\">\n");
-      out.write("\t\t\t\t\t\t\t\t\t<label class=\"col-md-2 control-label\" for=\"foto\">Direccion de la foto</label>\n");
-      out.write("\t\t\t\t\t\t\t\t\t<div class=\"col-md-10\">\n");
-      out.write("\t\t\t\t\t\t\t\t\t\t<input id=\"foto\" name=\"foto\" type=\"text\" placeholder=\"prin/img/property_3.jpg\" class=\"form-control\">\n");
-      out.write("\t\t\t\t\t\t\t\t\t</div>\n");
-      out.write("\t\t\t\t\t\t\t\t</div>\n");
-      out.write("                                                                \n");
-      out.write(" \t\n");
-      out.write("\t\t\t\t\t\t\t\t\t\n");
-      out.write("\t\t\t\t\t\t\t\t\n");
       out.write("\t\t\t\t\t\t\t\t\n");
       out.write("\t\t\t\t\t\t\t\t<!-- Form actions -->\n");
       out.write("\t\t\t\t\t\t\t\t<div class=\"form-group\">\n");
@@ -216,28 +180,28 @@ public final class Datos_005fhabitacion_jsp extends org.apache.jasper.runtime.Ht
       out.write("\t\t\t\t\t\t\t\t</div>\n");
       out.write("\t\t\t\t\t\t\t</fieldset>\n");
       out.write("\t\t\t\t\t\t</form>\n");
-      out.write("                                            </div>\n");
-      out.write("                                        </div>         \n");
-      out.write("                                    </div>\n");
-      out.write("                                </div>    \n");
-      out.write("                                            <div class=\"row\">\n");
+      out.write("\t\t\t\t\t</div>\n");
+      out.write("\t\t\t\t</div>\n");
+      out.write("                            </div>\n");
+      out.write("                </div>\n");
+      out.write("\t\t<div class=\"row\">\n");
       out.write("\t\t\t<div class=\"col-md-12\">\n");
-      out.write("\t\t\t\t<h1 class=\"page-header text-center\">Listado de las habitaciones</h1>\n");
+      out.write("\t\t\t\t<h1 class=\"page-header text-center\">Listado tipos de las habitaciones</h1>\n");
       out.write("\t\t\t</div>\n");
       out.write("\t\t</div><!--/.row-->\n");
       out.write("\t\t<div class=\"col-md-12\">\n");
-      out.write("                                              ");
+      out.write("            ");
 
-            daohabitaciones h=new daohabitaciones();
-           out.print(h.habitaciones());
+            tipohabitaciondao tipoh=new tipohabitaciondao();
+           out.print(tipoh.tipos());
             
       out.write("\n");
       out.write("                </div>\n");
       out.write("\t\t\t\t\t\n");
-      out.write("\t\t\t\t</div>\n");
+      out.write("\t\t\t\t</div>\t\n");
+      out.write("                 \n");
       out.write("\t\t\t\t\n");
-      out.write("        \n");
-      out.write(" \n");
+      out.write("\t\t\n");
       out.write("\t\t  \n");
       out.write("\n");
       out.write("\t<script src=\"js/jquery-1.11.1.min.js\"></script>\n");

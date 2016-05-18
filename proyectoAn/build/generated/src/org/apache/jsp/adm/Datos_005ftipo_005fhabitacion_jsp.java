@@ -3,8 +3,9 @@ package org.apache.jsp.adm;
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.jsp.*;
+import co.ufps.edu.dao.tipohabitaciondao;
 
-public final class Tipo_005fhabitacion_jsp extends org.apache.jasper.runtime.HttpJspBase
+public final class Datos_005ftipo_005fhabitacion_jsp extends org.apache.jasper.runtime.HttpJspBase
     implements org.apache.jasper.runtime.JspSourceDependent {
 
   private static final JspFactory _jspxFactory = JspFactory.getDefaultFactory();
@@ -41,6 +42,7 @@ public final class Tipo_005fhabitacion_jsp extends org.apache.jasper.runtime.Htt
       _jspx_out = out;
       _jspx_resourceInjector = (org.glassfish.jsp.api.ResourceInjector) application.getAttribute("com.sun.appserv.jsp.resource.injector");
 
+      out.write("\n");
       out.write("\n");
       out.write("\n");
       out.write("\n");
@@ -140,22 +142,9 @@ public final class Tipo_005fhabitacion_jsp extends org.apache.jasper.runtime.Htt
       out.write("\t\t</div><!--/.row-->\n");
       out.write("\t\t\t\t\t\t\t\t\t\n");
       out.write("\t\t<div class=\"row\">\n");
-      out.write("\t\t\t<div class=\"col-xs-12 col-md-6 col-lg-6\">\n");
-      out.write("\t\t\t\t<div class=\"panel panel-blue panel-widget \">\n");
-      out.write("\t\t\t\t\t<div class=\"row no-padding\">\n");
-      out.write("\t\t\t\t\t\t<div class=\"col-sm-3 col-lg-5 widget-left\">\n");
-      out.write("                                                    <svg class=\"glyph stroked bag\"><svg class=\"glyph stroked tag\"><use xlink:href=\"#stroked-tag\"/></svg>\n");
-      out.write("\t\t\t\t\t\t</div>\n");
-      out.write("\t\t\t\t\t\t<div class=\"col-sm-9 col-lg-7 widget-right\">\n");
-      out.write("\t\t\t\t\t\t\t\n");
-      out.write("                                                    <div class=\"text-muted\"> <H4> DATOS PROPIEDADES DE HABITACION</H4> </div>\n");
-      out.write("\t\t\t\t\t\t</div>\n");
-      out.write("\t\t\t\t\t</div>\n");
-      out.write("\t\t\t\t</div>\n");
+      out.write("\t\t\t<div class=\"col-lg-12\">\n");
+      out.write("\t\t\t\t<h1 class=\"page-header text-center\">Datos tipo de la habitacion</h1>\n");
       out.write("\t\t\t</div>\n");
-      out.write("\t\t\t\n");
-      out.write("\t\t\t\n");
-      out.write("\t\t\t\n");
       out.write("\t\t</div><!--/.row-->\n");
       out.write("\t\t\n");
       out.write("\t\t<div class=\"row\">\n");
@@ -163,35 +152,20 @@ public final class Tipo_005fhabitacion_jsp extends org.apache.jasper.runtime.Htt
       out.write("\t\t\t\t<div class=\"panel panel-default\">\n");
       out.write("\t\t\t\t\t<div class=\"panel-heading\"><svg class=\"glyph stroked email\"><use xlink:href=\"#stroked-email\"></use></svg> Formulario Datos propiedades de la habitacion</div>\n");
       out.write("\t\t\t\t\t<div class=\"panel-body\">\n");
-      out.write("\t\t\t\t\t\t<form class=\"form-horizontal\" action=\"registradopropiedadesHab.jsp\" method=\"post\">\n");
-      out.write("\t\t\t\t\t\t\t<fieldset>\n");
-      out.write("\t\t\t\t\t\t\t\t<!-- id input-->\n");
-      out.write("\t\t\t\t\t\t\t\t<div class=\"form-group\">\t\n");
-      out.write("                                                                        <label class=\"col-md-2 control-label\" for=\"idh\">ID de la propiedad</label>\n");
-      out.write("\t\t\t\t\t\t\t\t\t<div class=\"col-md-10\">\n");
-      out.write("\t\t\t\t\t\t\t\t\t<input id=\"idh\" name=\"idh\" type=\"number\"  class=\"form-control\" required>\n");
-      out.write("\t\t\t\t\t\t\t\t\t</div>\n");
-      out.write("\t\t\t\t\t\t\t\t</div>\n");
-      out.write("                                                                \n");
-      out.write("\t\t\t\t\t\t\t\t\n");
-      out.write("\t\t\t\t\t\t\t\n");
+      out.write("\t\t\t\t\t\t<form class=\"form-horizontal\" action=\"registrado_tipo_Hab.jsp\" method=\"post\">\n");
+      out.write("                                                    <fieldset>\n");
       out.write("\t\t\t\t\t\t\t\t<!-- Nombre input-->\n");
       out.write("\t\t\t\t\t\t\t\t<div class=\"form-group\">\n");
-      out.write("\t\t\t\t\t\t\t\t\t<label class=\"col-md-2 control-label\" for=\"name\">Descripcion</label>\n");
+      out.write("\t\t\t\t\t\t\t\t\t<label class=\"col-md-2 control-label\" for=\"name\">Nombre del tipo de habitacion</label>\n");
       out.write("\t\t\t\t\t\t\t\t\t<div class=\"col-md-10\">\n");
       out.write("\t\t\t\t\t\t\t\t\t\t<input id=\"name\" name=\"name\" type=\"text\" placeholder=\"Nombre de la descripcion \" class=\"form-control\">\n");
       out.write("\t\t\t\t\t\t\t\t\t</div>\n");
       out.write("\t\t\t\t\t\t\t\t</div>\n");
       out.write("                                                                <!-- Precio input-->\n");
       out.write("\t\t\t\t\t\t\t\t<div class=\"form-group\">\n");
-      out.write("\t\t\t\t\t\t\t\t\t<label class=\"col-md-2 control-label\" for=\"porc\">Procentaje incremento</label>\n");
+      out.write("\t\t\t\t\t\t\t\t\t<label class=\"col-md-2 control-label\" for=\"precio\">Precio base</label>\n");
       out.write("\t\t\t\t\t\t\t\t\t<div class=\"col-md-10\">\n");
-      out.write("\t\t\t\t\t\t\t\t\t\t<input id=\"porc\" name=\"porc\" type=\"number\" class=\"form-control\">\n");
-      out.write("\t\t\t\t\t\t\t\t\t</div>\n");
-      out.write("\t\t\t\t\t\t\t\t</div>\n");
-      out.write("                                                                \n");
-      out.write(" \n");
-      out.write("                                                                   </div>\t\n");
+      out.write("\t\t\t\t\t\t\t\t\t\t<input id=\"precio\" name=\"precio\" type=\"number\" class=\"form-control\">\n");
       out.write("\t\t\t\t\t\t\t\t\t</div>\n");
       out.write("\t\t\t\t\t\t\t\t</div>\n");
       out.write("\t\t\t\t\t\t\t\t\n");
@@ -205,7 +179,24 @@ public final class Tipo_005fhabitacion_jsp extends org.apache.jasper.runtime.Htt
       out.write("\t\t\t\t\t\t</form>\n");
       out.write("\t\t\t\t\t</div>\n");
       out.write("\t\t\t\t</div>\n");
-      out.write("\t\t\t\t\n");
+      out.write("                            </div>\n");
+      out.write("                </div>\n");
+      out.write("\t\t<div class=\"row\">\n");
+      out.write("\t\t\t<div class=\"col-md-12\">\n");
+      out.write("\t\t\t\t<h1 class=\"page-header text-center\">Listado de las habitaciones</h1>\n");
+      out.write("\t\t\t</div>\n");
+      out.write("\t\t</div><!--/.row-->\n");
+      out.write("\t\t<div class=\"col-md-12\">\n");
+      out.write("                                              ");
+
+            tipohabitaciondao tipoh=new tipohabitaciondao();
+           out.print(tipoh.tipos());
+            
+      out.write("\n");
+      out.write("                </div>\n");
+      out.write("\t\t\t\t\t\n");
+      out.write("\t\t\t\t</div>\t\n");
+      out.write("                 \n");
       out.write("\t\t\t\t\n");
       out.write("\t\t\n");
       out.write("\t\t  \n");
