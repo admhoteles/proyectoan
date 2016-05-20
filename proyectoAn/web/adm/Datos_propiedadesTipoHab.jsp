@@ -4,6 +4,7 @@
     Author     : EDINSON
 --%>
 
+<%@page import="co.ufps.edu.dao.tipohabpropiedades"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -118,18 +119,31 @@
 						<form class="form-horizontal" action="registrado_tipo_prop.jsp" method="post">
 							<fieldset>
 								<!-- tipo input-->
-								<div class="form-group">	
-                                                                        <label class="col-md-2 control-label" for="idT">Tipo de la habitacion</label>
+								<div class="form-group">
+									<label class="col-md-2 control-label" for="tipo">Tipo de Habitacion</label>
 									<div class="col-md-10">
-									<!-- seleccione tipo y guardar la id <input id="idT" name="idh" type="number"  class="form-control" required>-->
+                                                                           <select class="form-control" name="tipo">
+                                                                        <option selected value="0"> Elige una opción </option>
+                                                                        <%
+                                                                        tipohabpropiedades hab=new tipohabpropiedades();
+                                                                       
+                                                                        String m=hab.tipos();
+                                                                        out.println(m);
+                                                                        %>
+									</select>
+									
 									</div>
 								</div>
                                                                 <!-- descripcion input-->
 								<div class="form-group">
 									<label class="col-md-2 control-label" for="idP">Nombre de la propiedad</label>
 									<div class="col-md-10">
-                                                                            <!-- aqui va una lista-->
-									
+                                                                           <%
+                                                                        
+                                                                        String n=hab.propiedades();
+                                                                        out.println(n);
+                                                                        %>
+									<input type="checkbox" name=msm.getInt(1) value=msm.getInt(1)>msm.getString(2)<br>
 									</div>
 								</div>
                                                                 <!-- propiedas que contiene -->

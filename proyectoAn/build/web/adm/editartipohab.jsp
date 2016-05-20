@@ -112,7 +112,7 @@
 		<div class="row">
 			<div class="col-md-12">
 				<div class="panel panel-default">
-					<div class="panel-heading"><svg class="glyph stroked email"><use xlink:href="#stroked-email"></use></svg> Formulario Datos propiedades de la habitacion</div>
+					<div class="panel-heading"><svg class="glyph stroked email"><use xlink:href="#stroked-email"></use></svg> Formulario editar tipo de la habitacion</div>
 					<div class="panel-body">
 						<form class="form-horizontal" action="actualizar_tipo_habitacion.jsp" method="post">
                                                     <fieldset>

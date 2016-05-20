@@ -183,7 +183,7 @@
                                                                         </div>
                                             <div class="row">
 			<div class="col-lg-12">
-				<h1 class="page-header text-center">Listado de las habitaciones</h1>
+				<h1 class="page-header text-center">Listado tipo de las habitaciones</h1>
 			</div>
 		</div><!--/.row-->
 		<div class="col-md-12">

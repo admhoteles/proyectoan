@@ -1,10 +1,13 @@
 <%-- 
-    Document   : Datos_hotel
-    Created on : 4/05/2016, 06:45:15 AM
+    Document   : editarpropiedadeshab
+    Created on : 18/05/2016, 07:03:20 AM
     Author     : EDINSON
 --%>
-
 <%@page import="co.ufps.edu.dao.propiedadeshabDAO"%>
+<%
+        int Param1= Integer.parseInt(request.getParameter ("id"));
+        String Param2= request.getParameter ("name");       
+%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE>
 <html>
@@ -12,7 +15,7 @@
    
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>REGISTRO PROPIEDADES DE LA HABITACION</title>
+<title>ACTUALIZACION PROPIEDADES DE LA HABITACION</title>
 
 <link href="css/bootstrap.min.css" rel="stylesheet">
 <link href="css/datepicker3.css" rel="stylesheet">
@@ -110,10 +113,21 @@
 		<div class="row">
 			<div class="col-md-12">
 				<div class="panel panel-default">
-					<div class="panel-heading"><svg class="glyph stroked email"><use xlink:href="#stroked-email"></use></svg> Formulario propiedades de las habitaciones </div>
+                                    <%
+                                        out.println("<div class=\"panel-heading\"><svg class=\"glyph stroked email\"><use xlink:href=\"#stroked-email\"></use></svg> Actualizacion datos de la propiedad "+Param2+"</div>");
+					%>
+					
 					<div class="panel-body">
-						<form class="form-horizontal" action="registradopropiedadesHab.jsp" method="post">
+						<form class="form-horizontal" action="actualizarpropiedadhab.jsp" method="post">
 							<fieldset>
+                                                            <!-- id input -->
+                                                            <% 
+                                                                    out.print("<div class=\"form-group\"> <label class=\"col-md-2 control-label\" for=\"idh\">Propiedad </label>"+
+									"<div class=\"col-md-10\">"+
+									"<input id=\"idh\" name=\"idh\"type=\"hidden\"  class=\"form-control\" value=\""+Param1+"placeholder=\""+Param1+"\">"+
+									"<p class=\"form-control-static\"> Propiedad  "+Param2+"</p>"+
+                                                                            "</div></div>");
+                                                                                %>
 								
                                                                 
 								<!-- descripcion input-->
@@ -146,10 +160,10 @@
 				</div>
 				 </div>	
 									</div>
-                
-                 <div class="row">
+                                                                                
+                                        <div class="row">
 			<div class="col-md-12">
-				<h1 class="page-header text-center">Listado propiedades las habitaciones</h1>
+				<h1 class="page-header text-center">Listado de las propiedades</h1>
 			</div>
 		</div><!--/.row-->
 		<div class="col-md-12">

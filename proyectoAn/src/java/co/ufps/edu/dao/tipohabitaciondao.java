@@ -44,11 +44,11 @@ int id;
        } catch (SQLException ex) {
            Logger.getLogger(tipohabitaciondao.class.getName()).log(Level.SEVERE, null, ex);
        }
-    
+     getCnn().cerrar();
        String sql ="INSERT INTO tiposhabitaciones(id_tipo,nombre, preciobase) VALUES ("+id+",'"+tipoh.getNombre()+"',"+tipoh.getPreciobase()+");";
 
       SQLException exe= getCnn().insertar(sql);
-          
+           getCnn().cerrar();
      System.out.println("insertar "+msm+"    ");
         return msm;
     }
@@ -90,23 +90,25 @@ int id;
     try {
         while (msm.next()){
             if(tipoh.getPreciobase()==0){
-                tipoh.setPreciobase(msm.getInt(2));
+                tipoh.setPreciobase(msm.getInt(3));
             }
             if(tipoh.getNombre()==null){
-                tipoh.setNombre(msm.getString(3));
+                tipoh.setNombre(msm.getString(2));
             }
         }   
+         getCnn().cerrar();
         String sql="UPDATE tiposhabitaciones SET nombre="+tipoh.getNombre()+", preciobase="+tipoh.getPreciobase()+" WHERE id_hab="+tipoh.getId()+";";
     int i=getCnn().actualizar(sql);
     } catch (SQLException ex) {
         Logger.getLogger(daohabitaciones.class.getName()).log(Level.SEVERE, null, ex);
         
     }
+     getCnn().cerrar();
      return "";
      }
      public void eliminar(int id){
    int   msm= getCnn().verificar("DELETE FROM tiposhabitaciones WHERE id_hab="+id+";");
-    
+     getCnn().cerrar();
     
  }
 }

@@ -4,8 +4,9 @@
     Author     : EDINSON
 --%>
 
+<%@page import="co.ufps.edu.dao.propiedadeshabDAO"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
+<!DOCTYPE>
 <html>
     <head>
    
@@ -131,9 +132,7 @@
 								</div>
                                                                 
  
-                                                                   </div>	
-									</div>
-								</div>
+                                                                  
 								
 								<!-- Form actions -->
 								<div class="form-group">
@@ -145,7 +144,21 @@
 						</form>
 					</div>
 				</div>
-				
+				 </div>	
+									</div>
+                
+                 <div class="row">
+			<div class="col-md-12">
+				<h1 class="page-header text-center">Listado propiedades las habitaciones</h1>
+			</div>
+		</div><!--/.row-->
+		<div class="col-md-12">
+                                              <%
+            propiedadeshabDAO p=new propiedadeshabDAO();
+           out.print(p.todaspropiedades());
+            %>
+                </div>
+								</div>
 				
 		
 		  
@@ -170,4 +183,4 @@
 </body>
 
 </html>
-</html>
+

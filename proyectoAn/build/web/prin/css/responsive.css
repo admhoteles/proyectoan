@@ -148,7 +148,7 @@ header a.hamburger.opned{
 
 header nav{
     float: right;
-   
+    opacity: 1;
 }
 
 
@@ -167,7 +167,7 @@ header nav ul li{
 header nav ul li a,
 header nav .login_btn{
     text-decoration: none;
-    color: white;
+    color: #fff;
     font-family: "lato-regular", Helvetica, Arial, sans-serif;
     font-size: 16px;
     letter-spacing: 1px;
@@ -190,21 +190,6 @@ header nav .login_btn{
 header nav .login_btn:hover{
     background: #ffffff;
     color: #1c3655;
-}
-
-
-
-#main-header {
-	background: /*#545352*/ #919191;
-	height: 80px;
-	
-	width: 100%; /* hacemos que la cabecera ocupe el ancho completo de la página */
-	left: 0; /* Posicionamos la cabecera al lado izquierdo */
-	top: 0; /* Posicionamos la cabecera pegada arriba */
-	position: fixed; /* Hacemos que la cabecera tenga una posición fija */
-        z-index: 50;
-        opacity: 5;
-        
 }
 
 
@@ -254,7 +239,6 @@ header nav .login_btn:hover{
     font-size: 14px;
     margin: -15px 0 0 25px;
     left: 1px;
-    
 }
 
 

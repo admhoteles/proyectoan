@@ -12,6 +12,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import ufps.edu.co.utils.conexion.Conexion;
+import ufps.edu.co.utils.conexion.clsConn;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -28,6 +29,7 @@ public class principaldao {
     private Connection con;
     private ResultSet rs;
     private PreparedStatement ps;
+    private clsConn cnn=new clsConn();
 
     public principaldao()   {
   
@@ -36,13 +38,13 @@ public class principaldao {
     }
    
     
-    public String consultardatos() throws SQLException{
+    public principal consultardatos() throws SQLException{
         this.con = c.conectar("");
         
         String resultado="";
        String sql;
    System.err.println("holaaaaaaaaaa");
-        sql="SELECT * FROM datos";
+        sql="SELECT * FROM hotel";
    principal p=new principal();
         try {
             Statement st = con.createStatement();
@@ -88,7 +90,56 @@ public class principaldao {
         }*/
     //   p.setHab(hab);
      //   c.cerrarConexion();
-       return p.toString(); 
+       return p; 
     } 
-    
+    public String habitacionesMostrar(){
+        String m="";
+      String  sql1="select tipo, foto from habitaciones group by tipo,foto; ";
+    int preciob=0;
+    String caracteristicas="";
+    int valor=0;
+    String tip="";
+    System.out.println("metoooodo");
+    ArrayList<Integer> tipo= new ArrayList<Integer>();
+        try {
+        ResultSet rs1=getCnn().consultaTabla(sql1);
+           
+            while(rs1.next()){
+                if(!tipo.contains(rs1.getInt(1))){
+                    tipo.add(rs1.getInt(1));
+                    System.out.println("ciclo1");
+                    String  sql2="select nombre,preciobase from tiposhabitaciones where id_tipo="+rs1.getInt(1)+"; ";
+                      ResultSet rs2 =getCnn().consultaTabla(sql2);
+                      while(rs2.next()){
+                          tip=rs2.getString(1);
+                          preciob=rs2.getInt(2);
+                    System.out.println("ciclo2");
+                      }
+                      
+                      String  sql3="select ph.descripcion,ph.incremento from propiedadesportipo p join propiedades ph on(p.id_descripcion=ph.id) where p.id_tipo="+rs1.getInt(1)+"; ";
+                      ResultSet rs3 =getCnn().consultaTabla(sql3);
+                      while(rs3.next()){
+                          caracteristicas+=rs3.getString(1)+", ";
+                          valor+=preciob*rs3.getInt(2)/100;
+                          System.out.print(caracteristicas+" cara");
+                      }
+                      valor+=preciob;
+                    m+=" <li><a href=\"#\"><img src=\""+rs1.getString(2)+"\" alt=\"\" title=\"\" class=\"property_img\"/></a>";
+					m+="<span class=\"price\">$"+valor+"</span>";
+					m+="<div class=\"property_details\">";
+						m+="<h1><a>Clase "+tip+"</a></h1>";
+						m+="<h2>"+caracteristicas+"<span class=\"property_size\"></span></h2></div></li>";
+		caracteristicas="";
+                }
+            }
+            
+    } catch (SQLException ex) {
+            Logger.getLogger(principaldao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        getCnn().cerrar();
+    return m;
+}
+     public clsConn getCnn() {
+        return cnn;
+    }
 }

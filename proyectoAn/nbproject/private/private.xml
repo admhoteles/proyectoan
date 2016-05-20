@@ -3,11 +3,12 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/F:/proyectoanalisis2016/proyectoan/proyectoAn/web/adm/editartipohab.jsp</file>
-            <file>file:/F:/proyectoanalisis2016/proyectoan/proyectoAn/web/adm/eliminar.jsp</file>
-            <file>file:/F:/proyectoanalisis2016/proyectoan/proyectoAn/web/adm/Datos_tipo_habitacion.jsp</file>
-            <file>file:/F:/proyectoanalisis2016/proyectoan/proyectoAn/src/java/co/ufps/edu/dao/tipohabitaciondao.java</file>
-            <file>file:/F:/proyectoanalisis2016/proyectoan/proyectoAn/web/adm/editarhabitacion.jsp</file>
+            <file>file:/F:/proyectoanalisis2016/proyectoan/proyectoAn/src/java/co/ufps/edu/dao/tipohabpropiedades.java</file>
+            <file>file:/F:/proyectoanalisis2016/proyectoan/proyectoAn/web/adm/Datos_propiedadesTipoHab.jsp</file>
+            <file>file:/F:/proyectoanalisis2016/proyectoan/proyectoAn/web/index.jsp</file>
+            <file>file:/F:/proyectoanalisis2016/proyectoan/proyectoAn/src/java/co/ufps/edu/dao/daohabitaciones.java</file>
+            <file>file:/F:/proyectoanalisis2016/proyectoan/proyectoAn/src/java/ufps/edu/co/utils/conexion/clsConn.java</file>
+            <file>file:/F:/proyectoanalisis2016/proyectoan/proyectoAn/src/java/co/ufps/edu/dao/principaldao.java</file>
         </group>
     </open-files>
 </project-private>
