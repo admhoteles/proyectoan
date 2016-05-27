@@ -4,7 +4,12 @@
     Author     : EDINSON
 --%>
 
-   <%@page import="co.ufps.edu.dao.propiedadeshabDAO"%>
+   <%@page import="co.ufps.edu.dao.servicioDAO"%>
+<%@page import="co.ufps.edu.dao.cargo_emp_DAO"%>
+<%@page import="co.ufps.edu.dao.empleadoDAO"%>
+<%@page import="co.ufps.edu.dao.estado_reservaDAO"%>
+<%@page import="co.ufps.edu.dao.estado_habDAO"%>
+<%@page import="co.ufps.edu.dao.propiedadeshabDAO"%>
 <%@page import="co.ufps.edu.dao.tipohabitaciondao"%>
 <%@page import="co.ufps.edu.dao.daohabitaciones"%>
 <!DOCTYPE>
@@ -48,7 +53,30 @@
                         p.eliminar(Integer.parseInt(Param1));
                         response.sendRedirect("Datos_propiedadesHab.jsp");
                         break;
- 
+                        
+        case  "estadohab" :estado_habDAO e= new estado_habDAO();
+                            e.eliminar(Integer.parseInt(Param1));
+                            response.sendRedirect("Estado_habitacion.jsp");
+                        break;
+        case "estadoreserva":
+                            estado_reservaDAO er= new estado_reservaDAO();
+                            er.eliminar(Integer.parseInt(Param1));
+                            response.sendRedirect("Estado_reserva.jsp");
+                           break;
+                           
+        case "empleado":  empleadoDAO em=new empleadoDAO();
+                          em.eliminar(Integer.parseInt(Param1));
+                          response.sendRedirect("Datos_empleado.jsp");
+                          break;
+                          
+        case "cargo": cargo_emp_DAO ca=new cargo_emp_DAO();
+                      ca.eliminar(Integer.parseInt(Param1));
+                      response.sendRedirect("datos_cargo.jsp");
+                      break;
+        case "servicio": servicioDAO se=new servicioDAO();
+                         se.eliminar(Integer.parseInt(Param1));
+                         response.sendRedirect("Datos_servicios.jsp");
+                         break;
         default:
      
         break;

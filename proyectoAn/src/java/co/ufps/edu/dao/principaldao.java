@@ -136,7 +136,7 @@ public class principaldao {
     } catch (SQLException ex) {
             Logger.getLogger(principaldao.class.getName()).log(Level.SEVERE, null, ex);
         }
-        getCnn().cerrar();
+       // getCnn().cerrar();
     return m;
 }
      public clsConn getCnn() {

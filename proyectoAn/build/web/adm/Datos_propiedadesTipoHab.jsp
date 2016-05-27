@@ -114,9 +114,9 @@
 		<div class="row">
 			<div class="col-md-12">
 				<div class="panel panel-default">
-					<div class="panel-heading"><svg class="glyph stroked email"><use xlink:href="#stroked-email"></use></svg> Formulario Datos del hotel</div>
+					<div class="panel-heading"><svg class="glyph stroked email"><use xlink:href="#stroked-email"></use></svg> Formulario propiedades de los tipos de habitacion</div>
 					<div class="panel-body">
-						<form class="form-horizontal" action="registrado_tipo_prop.jsp" method="post">
+						<form class="form-horizontal" action="registrado_prop_por_tipo.jsp" method="post">
 							<fieldset>
 								<!-- tipo input-->
 								<div class="form-group">
@@ -143,24 +143,10 @@
                                                                         String n=hab.propiedades();
                                                                         out.println(n);
                                                                         %>
-									<input type="checkbox" name=msm.getInt(1) value=msm.getInt(1)>msm.getString(2)<br>
+									
 									</div>
 								</div>
-                                                                <!-- propiedas que contiene -->
-								<div class="form-group">
-									<label class="col-md-7 control-label" for="estado">Propiedades actuales del tipo de Habitacion</label>
-									<div class="col-md-10">
-										<!-- aqui va una lista-->
-									</div>
-								</div>
-							
-			
                                                                 
- 
-                                                                   </div>	
-									</div>
-								</div>
-								
 								<!-- Form actions -->
 								<div class="form-group">
 									<div class="col-md-12 widget-right btn btn-danger">
@@ -171,7 +157,23 @@
 						</form>
 					</div>
 				</div>
-				
+				 </div>	
+									</div>
+								
+        
+              <div class="row">
+			<div class="col-md-12">
+				<h1 class="page-header text-center">Listado caracteristicas del tipo de habitaciones</h1>
+			</div>
+		</div><!--/.row-->
+		<div class="col-md-12">
+                                              <%
+            tipohabpropiedades h=new tipohabpropiedades();
+           out.print(h.tabla());
+            %>
+                </div>
+			
+        </div>
 				
 		
 		  

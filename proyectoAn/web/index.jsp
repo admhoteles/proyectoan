@@ -8,9 +8,6 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
  <jsp:useBean id="consul" class="co.ufps.edu.dao.principaldao" scope="session"></jsp:useBean>
     <%
-   
-      
-    
    principal m= consul.consultardatos();
     
     //System.out.println(msg);

@@ -7,13 +7,17 @@ package co.ufps.edu.dao;
 
 import co.ufps.edu.dto.habitaciones;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import ufps.edu.co.utils.conexion.clsConn;
+import java.util.List;
+import ufps.edu.co.utils.conexion.Conexion;
 
 
 /**
@@ -27,7 +31,7 @@ int tipo;
 int estado;
 String foto;
 private clsConn cnn=new clsConn();
-
+private Conexion conexion;
         
 
     public daohabitaciones() {
@@ -150,6 +154,109 @@ public String estados(){
     }
         return opcion;
         }
+
+public List<habitaciones>listarh(){
+        
+        Connection con=null;
+		PreparedStatement ps=null;
+		ResultSet rst=null;
+                List<habitaciones>habitacion=new ArrayList<habitaciones>();
+                habitaciones h ;
+		try {
+			
+			if(conexion==null) conexion= new Conexion();
+			if(conexion.getConnection()==null) con = conexion.conectar("");
+			else con= conexion.getConnection();
+			String sql = "SELECT * FROM  habitaciones";
+				
+			ps = con.prepareStatement(sql);
+			
+                       
+			rst = ps.executeQuery();
+			
+			while(rst.next()){
+				h = new habitaciones();
+                                
+                               h.setEstado(rst.getInt("estado"));
+                               h.setFoto(rst.getString("foto"));
+                               h.setId(rst.getInt("id_hab"));
+                               h.setTipo(rst.getInt("tipo"));
+                               
+                               
+			habitacion.add(h);
+                      
+                        }
+			
+		} catch (Exception e) {
+                    System.out.println("error "+e.toString());
+			e.printStackTrace();
+			
+                       
+		} finally {
+			try {
+				ps.close();
+				con.close();
+			} catch (SQLException e2) {
+				e2.printStackTrace();
+				
+			}
+						
+			ps=null;
+			con=null;
+    }
+        return habitacion;
+        
+        
+    }
+     
+    public habitaciones buscarh(int id){
+     
+		Connection con=null;
+		PreparedStatement ps=null;
+		ResultSet rst=null;
+                habitaciones  h =new habitaciones();
+		try {
+			
+			if(conexion==null) conexion= new Conexion();
+			if(conexion.getConnection()==null) con = conexion.conectar("");
+			else con= conexion.getConnection();
+			String sql = "SELECT * FROM habitaciones "
+					+    "WHERE id_hab = ? ";
+			ps = con.prepareStatement(sql);
+			ps.setInt(1, id);
+                       
+			rst = ps.executeQuery();
+			
+			if(rst.next()){
+				  h.setEstado(rst.getInt("estado"));
+                               h.setFoto(rst.getString("foto"));
+                               h.setId(rst.getInt("id_hab"));
+                               h.setTipo(rst.getInt("tipo"));
+                               
+			}else{
+                            h=null;
+                        }
+			
+		} catch (Exception e) {
+                    System.out.println("error "+e.toString());
+			e.printStackTrace();
+			conexion.escribirLogs("UsuarioDao", "registrarUsuario", e.toString());
+                       
+		} finally {
+			try {
+				ps.close();
+				con.close();
+			} catch (SQLException e2) {
+				e2.printStackTrace();
+				conexion.escribirLogs("UsuarioDao", "registrarUsuario", e2.toString());
+			}
+						
+			ps=null;
+			con=null;
+                        
+		}
+                return h;
+    } 
   }
 
 

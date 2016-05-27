@@ -6,7 +6,15 @@
 package facade;
 
 import Negocio.ContorladorHuesped;
+import Negocio.ControladorClientes;
+import Negocio.ControladorHabitacion;
+import Negocio.ControladorReserva;
+import co.ufps.edu.dto.Cliente;
+import co.ufps.edu.dto.EstadoHabitacion;
 import co.ufps.edu.dto.Huesped;
+import co.ufps.edu.dto.Reserva;
+import co.ufps.edu.dto.TipoHabitacion;
+import co.ufps.edu.dto.habitaciones;
 import java.util.List;
 
 /**
@@ -15,10 +23,18 @@ import java.util.List;
  */
 public class ControladorNegocio {
     private ContorladorHuesped contorladorH;
+    private ControladorHabitacion h;
+    
+    private ControladorClientes cliente;
+    private ControladorReserva reserva;
+    
 
     public ControladorNegocio() {
         
         contorladorH= new ContorladorHuesped();
+        h=new ControladorHabitacion();
+        cliente= new ControladorClientes();
+        reserva = new ControladorReserva();
         
     }
     
@@ -33,5 +49,50 @@ public class ControladorNegocio {
      public Huesped registrarH(Huesped h){
          return contorladorH.RegistrarHuesped(h);
      }
+     
+     
+     
+     public List<habitaciones>listarh(){
+       return h.consultarhabitaciones();  
+     }
+     
+     
+     public habitaciones buscarh(int id){
+         return h.buscarh(id);
+     }
+     
+     
+     public EstadoHabitacion consultarEstadoHabitacion(int id){
+         return h.buscarEstado(id);
+     }
+     
+     public TipoHabitacion consultarTipoh(int id){
+         return h.consultarTipo(id);
+     }
+     
+     
+     
+     
+     public List<Cliente>listarCliente(){
+         return cliente.listarCliente();
+     }
     
+     
+     public Cliente crearCliente(Cliente c){
+         return cliente.crearCliente(c);
+     }
+     
+     
+    
+     public Reserva crearReserva(Reserva  r){
+       return reserva.createReserva(r);
+     }
+     
+     public Reserva buscarReservaporHuesped(int cc){
+         return reserva.listarReservaporhuesped(cc);
+     }
+     
+     public Cliente ListarClientepor(int cc){
+         return cliente.ListarHuespedpor(cc);
+     }
 }
