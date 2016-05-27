@@ -32,4 +32,8 @@ public class ControladorClientes {
     {
         return cliente.ListarClientepor(cc);
     }    
+    
+    public Cliente ListarHuespedporid(int id){
+        return cliente.ListarClienteporid(id);
+    }
 }

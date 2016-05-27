@@ -88,11 +88,15 @@ public class ControladorNegocio {
        return reserva.createReserva(r);
      }
      
-     public Reserva buscarReservaporHuesped(int cc){
-         return reserva.listarReservaporhuesped(cc);
+     public Reserva buscarReservaporHuesped(int numh){
+         return reserva.listarReservaporhuesped(numh);
      }
      
      public Cliente ListarClientepor(int cc){
          return cliente.ListarHuespedpor(cc);
+     }
+     
+     public Cliente ListarClientePorid(int id){
+          return cliente.ListarHuespedporid(id);
      }
 }

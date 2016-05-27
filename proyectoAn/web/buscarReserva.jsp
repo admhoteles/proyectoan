@@ -117,8 +117,10 @@
         <%//hay busqueda
         ControladorNegocio c= new ControladorNegocio();
         int bus=Integer.parseInt(busqueda);
-        Reserva reserva=c.buscarReservaporHuesped(bus);
+        Reserva reserva2=c.buscarReservaporHuesped(bus);
          SimpleDateFormat sdf = new SimpleDateFormat("yy-MM-dd HH:mm:ss");
+         
+         
         %>
        
         <table class="table">
@@ -142,12 +144,13 @@
       
         <tr>
     <form action="generarf.jsp" method="POST">
-            <td>10</td>
-             <td>huesped1</td>
+            <td><%=reserva2.getId()%></td>
+            <%Cliente  creservado=c.ListarClientePorid(reserva2.getId_cliente());%>
+             <td><%=creservado.getNombre()%></td>
             <td>106  </td>
-            <td>20/05/2016</td>
-               <td>20/05/2016</td>
-              <%session.setAttribute("reserva",reserva);%>
+            <td><%=sdf.format(reserva2.getFechainicio().getTime())%></td>
+               <td><%=sdf.format(reserva2.getFechafin().getTime())%></td>
+              <%//session.setAttribute("reserva",reserva);%>
             <td> <input type="submit" value="Generar Factura" class="btn btn-info" min="0"/></td>
             
             </form>

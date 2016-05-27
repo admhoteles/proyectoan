@@ -23,8 +23,8 @@ public class ControladorReserva {
     public Reserva createReserva(Reserva r){
         return reserva.crearReserva(r);
     }
-    public Reserva listarReservaporhuesped(int cedula){
-        return reserva.ListarReservaPorHuesped(cedula);
+    public Reserva listarReservaporhuesped(int numh){
+        return reserva.ListarReservaPorHuesped(numh);
     }
     
 }

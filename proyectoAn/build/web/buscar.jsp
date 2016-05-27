@@ -90,7 +90,12 @@
   <button type="button" class="close" data-dismiss="alert">&times;</button>
   <strong>¡Felicdades!</strong>Registro el Huesped correctamente
 </div>
-     <%}%>
+     <%
+            
+            session.setAttribute("huesped",null);
+        
+   
+   }%>
         
 					<div class="panel-body">
 						<div class="col-md-6">

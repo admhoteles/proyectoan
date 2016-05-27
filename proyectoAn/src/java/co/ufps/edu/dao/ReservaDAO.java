@@ -85,7 +85,7 @@ INNER JOIN reserva
 ON huesped.id=reserva.id_cliente where huesped.cedula=123456789
      **/
      
-      public Reserva ListarReservaPorHuesped(int cedulaHuesped){
+      public Reserva ListarReservaPorHuesped(int numhab){
       
 		Connection con=null;
 		PreparedStatement ps=null;
@@ -95,23 +95,18 @@ ON huesped.id=reserva.id_cliente where huesped.cedula=123456789
                 
                Reserva r=new Reserva() ;
 		try {
-			
 			if(conexion==null) conexion= new Conexion();
 			if(conexion.getConnection()==null) con = conexion.conectar("");
 			else con= conexion.getConnection();
-			String sql = "SELECT reserva.id,reserva.id_cliente,"
-                                + "reserva.fechafin,reserva.fechainicial,reserva.id_hab,"
-                                + "reserva.estado"
-                                 +"FROM huesped" +
-                                "INNER JOIN reserva" +
-                                "ON huesped.id=reserva.id_cliente where huesped.cedula=? and estado=1";
+			String sql = "SELECT * FROM reserva where id_hab=? and estado=1";
 			ps = con.prepareStatement(sql);
-                        ps.setInt(1,cedulaHuesped);
+                       ps.setInt(1,numhab);
 			
                        
 			rst = ps.executeQuery();
 			
 			if(rst.next()){
+                            
 				
                                 r.setEstado(rst.getInt("estado"));
                                 r.setId(rst.getInt("id"));
@@ -123,11 +118,12 @@ ON huesped.id=reserva.id_cliente where huesped.cedula=123456789
                              r.setFechafin(fechafin);
                              
                              r.setId_cliente(rst.getInt("id_cliente"));
-                              r.setId_cliente(rst.getInt("id_hab"));
+                              r.setId_hab(rst.getInt("id_hab"));
                               
                                
 			
                         }
+                        
 			
 		} catch (Exception e) {
                     System.out.println("error "+e.toString());

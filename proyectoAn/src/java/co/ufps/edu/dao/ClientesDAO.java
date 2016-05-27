@@ -239,5 +239,69 @@ public class ClientesDAO {
                 return cliente;
     
 }
+  
+  
+  
+  
+  
+  public Cliente ListarClienteporid(int id){
+   
+		Connection con=null;
+		PreparedStatement ps=null;
+		ResultSet rst=null;
+                Cliente cliente=new Cliente();
+               
+		try {
+			
+			if(conexion==null) conexion= new Conexion();
+			if(conexion.getConnection()==null) con = conexion.conectar("");
+			else con= conexion.getConnection();
+			String sql = "SELECT * FROM huesped "
+					+    "WHERE id = ? ";
+			ps = con.prepareStatement(sql);
+                        ps.setInt(1,id);
+			
+                       
+			rst = ps.executeQuery();
+			
+			if(rst.next()){
+			 cliente=new Cliente();
+                            
+			   
+                    cliente.setId(rst.getInt("id"));
+                    cliente.setCedula(rst.getInt("cedula"));
+                    cliente.setApellidos(rst.getString("apellidos"));
+                    cliente.setNombre(rst.getString("nombres"));
+                    cliente.setNacionalidad(rst.getString("nacionalidad"));
+                    cliente.setPasaporte(rst.getString("pasaporte"));
+                    cliente.setProcedencia(rst.getString("procedencia"));
+                    cliente.setDireccion(rst.getString("direccion"));
+                    cliente.setTelefono(rst.getInt("telefono"));
+                    
+			
+                        }
+			
+		} catch (Exception e) {
+                    System.out.println("error "+e.toString());
+			e.printStackTrace();
+			conexion.escribirLogs("UsuarioDao", "registrarUsuario", e.toString());
+                       
+		} finally {
+			try {
+				ps.close();
+				con.close();
+			} catch (SQLException e2) {
+				e2.printStackTrace();
+				conexion.escribirLogs("UsuarioDao", "registrarUsuario", e2.toString());
+			}
+						
+			ps=null;
+			con=null;
+    }
+                
+                return cliente;
+    
+}
+    
     
 }
