@@ -13,6 +13,7 @@ import co.ufps.edu.dto.Cliente;
 import co.ufps.edu.dto.EstadoHabitacion;
 import co.ufps.edu.dto.Huesped;
 import co.ufps.edu.dto.Reserva;
+import co.ufps.edu.dto.Servicios;
 import co.ufps.edu.dto.TipoHabitacion;
 import co.ufps.edu.dto.habitaciones;
 import java.util.List;
@@ -98,5 +99,10 @@ public class ControladorNegocio {
      
      public Cliente ListarClientePorid(int id){
           return cliente.ListarHuespedporid(id);
+     }
+     
+     
+     public List<Servicios>ListarSErvicio(){
+         return reserva.ListarSErvicios();
      }
 }

@@ -5,11 +5,17 @@
  */
 package co.ufps.edu.dao;
 
+import co.ufps.edu.dto.Cliente;
 import co.ufps.edu.dto.Servicios;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import ufps.edu.co.utils.conexion.Conexion;
 import ufps.edu.co.utils.conexion.clsConn;
 
 /**
@@ -18,6 +24,8 @@ import ufps.edu.co.utils.conexion.clsConn;
  */
 public class servicioDAO {
  private clsConn cnn=new clsConn();
+ 
+ private Conexion conexion;
     public servicioDAO() {
     }
     
@@ -103,5 +111,76 @@ public class servicioDAO {
     public clsConn getCnn() {
         return cnn;
     }
+    
+    
+    
+    
+    
+   public List<Servicios>ListarServicio(){
+      
+		Connection con=null;
+		PreparedStatement ps=null;
+		ResultSet rst=null;
+                List<Servicios>servicios=new ArrayList<Servicios>();
+                Servicios servicio=new Servicios() ;
+		try {
+			
+			if(conexion==null) conexion= new Conexion();
+			if(conexion.getConnection()==null) con = conexion.conectar("");
+			else con= conexion.getConnection();
+			String sql = "SELECT * FROM servicio "
+					;
+			ps = con.prepareStatement(sql);
+			
+                       
+			rst = ps.executeQuery();
+			
+			while(rst.next()){
+                            /*
+                            
+                            
+                              id serial NOT NULL,
+  id_hotel numeric(10,0) NOT NULL,
+  nombres character varying(40) NOT NULL,
+  apellidos character varying(40) NOT NULL,
+  cedula numeric NOT NULL,
+  direccion character varying(60) NOT NULL,
+  telefono numeric NOT NULL,
+  nacionalidad character varying(60) NOT NULL,
+  procedencia character varying(60) NOT NULL,
+  pasaporte character varying(100),
+                            **/
+                            servicio=new Servicios();
+                            
+			   
+       servicio.setId(rst.getInt("id"));
+       servicio.setNombre(rst.getString("nombre"));
+       servicio.setPrecio(rst.getInt("precio"));
+                    
+          
+			servicios.add(servicio);
+                        }
+			
+		} catch (Exception e) {
+                    System.out.println("error "+e.toString());
+			e.printStackTrace();
+			conexion.escribirLogs("UsuarioDao", "registrarUsuario", e.toString());
+                       
+		} finally {
+			try {
+				ps.close();
+				con.close();
+			} catch (SQLException e2) {
+				e2.printStackTrace();
+				conexion.escribirLogs("UsuarioDao", "registrarUsuario", e2.toString());
+			}
+						
+			ps=null;
+			con=null;
+    }
+                
+                return servicios;
+    
+}
 }
 
