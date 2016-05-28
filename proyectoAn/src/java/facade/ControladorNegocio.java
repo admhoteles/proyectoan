@@ -105,4 +105,8 @@ public class ControladorNegocio {
      public List<Servicios>ListarSErvicio(){
          return reserva.ListarSErvicios();
      }
+     
+     public Servicios listarserviciopor(int id){
+         return reserva.listarserviciopor(id);
+     }
 }

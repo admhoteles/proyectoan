@@ -128,7 +128,7 @@ public class servicioDAO {
 			if(conexion==null) conexion= new Conexion();
 			if(conexion.getConnection()==null) con = conexion.conectar("");
 			else con= conexion.getConnection();
-			String sql = "SELECT * FROM servicio "
+			String sql = "SELECT * FROM servicio"
 					;
 			ps = con.prepareStatement(sql);
 			
@@ -136,20 +136,7 @@ public class servicioDAO {
 			rst = ps.executeQuery();
 			
 			while(rst.next()){
-                            /*
-                            
-                            
-                              id serial NOT NULL,
-  id_hotel numeric(10,0) NOT NULL,
-  nombres character varying(40) NOT NULL,
-  apellidos character varying(40) NOT NULL,
-  cedula numeric NOT NULL,
-  direccion character varying(60) NOT NULL,
-  telefono numeric NOT NULL,
-  nacionalidad character varying(60) NOT NULL,
-  procedencia character varying(60) NOT NULL,
-  pasaporte character varying(100),
-                            **/
+                          
                             servicio=new Servicios();
                             
 			   
@@ -182,5 +169,60 @@ public class servicioDAO {
                 return servicios;
     
 }
+   
+   
+    public Servicios lisTarserviciopor(int id){
+   
+		Connection con=null;
+		PreparedStatement ps=null;
+		ResultSet rst=null;
+                Servicios servicio=new Servicios();
+               
+		try {
+			
+			if(conexion==null) conexion= new Conexion();
+			if(conexion.getConnection()==null) con = conexion.conectar("");
+			else con= conexion.getConnection();
+			String sql = "SELECT * FROM servicio "
+					+    "WHERE id = ? ";
+			ps = con.prepareStatement(sql);
+                        ps.setInt(1,id);
+			
+                       
+			rst = ps.executeQuery();
+			
+			if(rst.next()){
+			 servicio=new Servicios();
+                            
+			   
+                    servicio.setId(rst.getInt("id"));
+                    servicio.setNombre(rst.getString("nombre"));
+                    servicio.setPrecio(rst.getInt("precio"));
+                    
+			
+                        }
+			
+		} catch (Exception e) {
+                    System.out.println("error "+e.toString());
+			e.printStackTrace();
+			conexion.escribirLogs("UsuarioDao", "registrarUsuario", e.toString());
+                       
+		} finally {
+			try {
+				ps.close();
+				con.close();
+			} catch (SQLException e2) {
+				e2.printStackTrace();
+				conexion.escribirLogs("UsuarioDao", "registrarUsuario", e2.toString());
+			}
+						
+			ps=null;
+			con=null;
+    }
+                
+                return servicio;
+    
+}
+  
 }
 

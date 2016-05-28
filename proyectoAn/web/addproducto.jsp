@@ -1,11 +1,15 @@
-<%@page import="co.ufps.edu.dto.Servicios"%>
-<%@page import="java.text.SimpleDateFormat"%>
-<%@page import="co.ufps.edu.dto.Reserva"%>
-<%@page import="co.ufps.edu.dto.Cliente"%>
-<%@page import="co.ufps.edu.dto.cuarto"%>
-<%@page import="facade.ControladorNegocio"%>
+<%-- 
+    Document   : addproducto
+    Created on : 28-may-2016, 16:06:33
+    Author     : macaco
+--%>
+
+<%@page import="java.util.ArrayList"%>
 <%@page import="java.util.List"%>
-<%@page import="co.ufps.edu.dto.Huesped"%>
+<%@page import="co.ufps.edu.dto.Servicios"%>
+<%@page import="facade.ControladorNegocio"%>
+<%@page import="co.ufps.edu.dto.Cliente"%>
+<%@page import="co.ufps.edu.dto.Reserva"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -47,13 +51,13 @@
         
         
         
-        <jsp:include page="menu.jsp" />
         
-	
+        
+	<jsp:include page="menu.jsp" />
 		
 		<div class="row">
 			<div class="col-lg-12">
-				<h1 class="page-header">Buscar Cuarto</h1>
+				<h1 class="page-header">Buscar Huesped</h1>
 			</div>
 		</div><!--/.row-->
 				
@@ -61,19 +65,45 @@
 		<div class="row">
 			<div class="col-lg-12">
 				<div class="panel panel-default">
-					<div class="panel-heading">Cuartos</div>
-                                        
-        
+					<div class="panel-heading">Huesped</div>
+                                         <%
+        Reserva reserva=(Reserva)session.getAttribute("rhecha");
+        if(reserva!=null){
             
-     
+        
+        %>
+        
+      <div class="alert alert-success">
+  <button type="button" class="close" data-dismiss="alert">&times;</button>
+  <strong>¡Felicdades!</strong> Reservar hecha satifastoriamente.
+</div>
+        
+        
+        <%}%>
+        
+        <%Cliente huesped = (Cliente)session.getAttribute("huesped");
+        
+        
+        if(huesped!=null){
+                %>
+      <div class="alert alert-success">
+  <button type="button" class="close" data-dismiss="alert">&times;</button>
+  <strong>¡Felicdades!</strong>Registro el Huesped correctamente
+</div>
+     <%
+            
+            session.setAttribute("huesped",null);
+        
+   
+   }%>
         
 					<div class="panel-body">
 						<div class="col-md-6">
-                                                    <form  method="GET" action="buscarReserva.jsp" >
+                                                    <form  method="GET" action="addproducto.jsp" >
 							<form role="form">
 							
 								<div class="form-group">
-									<label>Digite Numeor Cuarto</label>
+									<label>Digite la cedula del huesped</label>
 									<input class="form-control" placeholder="Cedula" name="cc">
 								</div>
 																
@@ -97,6 +127,7 @@
 							<div class="col-md-12">
 							
 								
+						
 					 <%
                                              
                                              //objetos sessiones
@@ -117,7 +148,7 @@
         ControladorNegocio c= new ControladorNegocio();
         int bus=Integer.parseInt(busqueda);
         List<Servicios>servicios=c.ListarSErvicio();
-         SimpleDateFormat sdf = new SimpleDateFormat("yy-MM-dd HH:mm:ss");
+         
          
          
         %>
@@ -128,11 +159,12 @@
             <th>id</th>
             <th>Nombre producto</th>
              <th>Precio</th>
-              <th>Cantidad</th>
-            <th>Elegir</th>
+              <th>Elegir</th>
+           
            
         </tr>
     </thead>
+    <form action="agregarproducto.jsp" method="POST">
     <tbody>
          
        
@@ -142,7 +174,7 @@
        
       
         <tr>
-    <form action="agregarproducto.jsp" method="POST">
+    
         <%for(Servicios s:servicios){%>
             <td><%=s.getId()%></td>
            
@@ -152,12 +184,16 @@
              
             <td><input type="checkbox" name="servicios" value="<%=s.getId()%>">  </td>             
             
-             <td> <input type="submit" value="Generar Factura" class="btn btn-info" min="0"/></td>
-            </form>
+          
+            
         </tr>
-    
-      
+    <%}
+        
+        %>
+          
     </tbody>
+  <td> <input type="submit" value="agregar servicios" class="btn btn-info" min="0"/></td>
+         </form>
 </table>
         
         
@@ -172,7 +208,7 @@
         <br>						
 								
 							</div>
-        <div class ="col-md-12"  style="text-align: center;"> <a href="#" id="alternar-respuesta-ej5" class="btn btn-info" >Buscar Por Cuarto</a></div>
+        
         
         
         <br>
@@ -181,29 +217,63 @@
         
         <div class="col-md-12" id="respuesta-ej5" style="display: none;" >
             
+            <%
+            String arreglo[]=request.getParameterValues("servicios");
             
-            <form  method="GET" action="buscar.jsp" >
-							<form role="form">
-							
-								<div class="form-group">
-									<label>Digite el numero del cuarto</label>
-									<input class="form-control" placeholder="Cedula" name="cc">
-								</div>
-																
-								<div class="form-group">
-                                                                    
-									
-								<button type="submit" class="btn btn-primary">Buscar</button>
-                                                                 
-								
-								</div>
-								 </form>
-</div>
-
-</br>
-
-
-        </form>
+            if(arreglo!=null){
+                
+           List<Servicios>servicios2= new ArrayList();
+            %>
+            
+            
+            <p>Usted ha elegido estos servicios por favor confirme con la cantidad</p>
+            
+            
+            
+              <table class="table">
+    <thead>
+        <tr>
+           
+            <th>Nombre producto</th>
+             <th>Cantidad</th>
+             
+           
+           
+        </tr>
+    </thead>
+    <form action="confimadoproducto.jsp" method="POST">
+    <tbody>
+         
+       
+     
+       
+       
+       
+      
+        <tr>
+    
+        <%for(Servicios s:servicios2){%>
+            <td><%=s.getId()%></td>
+           
+             <td><%=s.getNombre()%></td>
+           
+            <td><input type="text" name="cantidad"></td>
+             
+                     
+            
+          
+            
+        </tr>
+    <%}
+        request.setAttribute("servicios",servicios2);
+        %>
+          
+    </tbody>
+  <td> <input type="submit" value="Confirmar" class="btn btn-info" min="0"/></td>
+         </form>
+</table>
+            
+            
         </div>
 						</form>
 					</div>
@@ -258,7 +328,7 @@ $(document).ready(function(){
         // Segundo click
         function(e){ 
             $('#respuesta-ej5').slideUp();
-            $(this).text('Buscar Por cuarto');
+            $(this).text('Desea Registrar un Huesped?');
             e.preventDefault();
         }
   

@@ -38,4 +38,8 @@ public class ControladorReserva {
         return servicio.ListarServicio();
         
     }
+    
+    public Servicios listarserviciopor(int id){
+        return servicio.lisTarserviciopor(id);
+    }
 }
