@@ -20,10 +20,10 @@
         %>
         
         <p><%=arreglo[0]%></p>
-         <p><%=arreglo[1]%></p>
+         <p><%=arreglo.length%></p>
          <%}%>
          <form action="prueba2.jsp">
-  <input type="checkbox" name="vehicle" value="Bike"> I have a bike<br>
+  <input type="checkbox" name="vehicle" value="Bike-car"> I have a bike<br>
   <input type="checkbox" name="vehicle" value="Car"> I have a car<br>
   <input type="submit" value="Submit">
 </form>

@@ -127,8 +127,9 @@
         <tr>
             <th>id</th>
             <th>Nombre producto</th>
+             <th>Precio</th>
               <th>Cantidad</th>
-            <th>Agregar</th>
+            <th>Elegir</th>
            
         </tr>
     </thead>
@@ -142,15 +143,16 @@
       
         <tr>
     <form action="agregarproducto.jsp" method="POST">
-            <td><%=reserva2.getId()%></td>
-            <%Cliente  creservado=c.ListarClientePorid(reserva2.getId_cliente());%>
-             <td><%=creservado.getNombre()%></td>
-            <td>106  </td>
-            <td><%=sdf.format(reserva2.getFechainicio().getTime())%></td>
-               <td><%=sdf.format(reserva2.getFechafin().getTime())%></td>
-              <%//session.setAttribute("reserva",reserva);%>
-            <td> <input type="submit" value="Generar Factura" class="btn btn-info" min="0"/></td>
+        <%for(Servicios s:servicios){%>
+            <td><%=s.getId()%></td>
+           
+             <td><%=s.getNombre()%></td>
+           
+            <td><%=s.getPrecio()%></td>
+             
+            <td><input type="checkbox" name="servicios" value="<%=s.getId()%>">  </td>             
             
+             <td> <input type="submit" value="Generar Factura" class="btn btn-info" min="0"/></td>
             </form>
         </tr>
     
