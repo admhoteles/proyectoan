@@ -159,6 +159,7 @@
             <th>id</th>
             <th>Nombre producto</th>
              <th>Precio</th>
+                <th>Cantidad</th>
               <th>Elegir</th>
            
            
@@ -172,17 +173,18 @@
        
        
        
-      
+      <%for(Servicios s:servicios){%>
         <tr>
     
-        <%for(Servicios s:servicios){%>
+        
             <td><%=s.getId()%></td>
            
              <td><%=s.getNombre()%></td>
            
             <td><%=s.getPrecio()%></td>
              
-            <td><input type="checkbox" name="servicios" value="<%=s.getId()%>">  </td>             
+            <td><input type="text" name="fname">  </td>  
+            <td><a href="http://google.com" class="btn btn-info" role="button">Go to Google</a></td> 
             
           
             
@@ -197,9 +199,7 @@
 </table>
         
         
-        <%}
-        
-        %>			
+    			
 								
 				
 								
@@ -208,7 +208,7 @@
         <br>						
 								
 							</div>
-        
+       <%}%> 
         
         
         <br>
@@ -217,63 +217,7 @@
         
         <div class="col-md-12" id="respuesta-ej5" style="display: none;" >
             
-            <%
-            String arreglo[]=request.getParameterValues("servicios");
-            
-            if(arreglo!=null){
-                
-           List<Servicios>servicios2= new ArrayList();
-            %>
-            
-            
-            <p>Usted ha elegido estos servicios por favor confirme con la cantidad</p>
-            
-            
-            
-              <table class="table">
-    <thead>
-        <tr>
-           
-            <th>Nombre producto</th>
-             <th>Cantidad</th>
-             
-           
-           
-        </tr>
-    </thead>
-    <form action="confimadoproducto.jsp" method="POST">
-    <tbody>
-         
-       
-     
-       
-       
-       
-      
-        <tr>
-    
-        <%for(Servicios s:servicios2){%>
-            <td><%=s.getId()%></td>
-           
-             <td><%=s.getNombre()%></td>
-           
-            <td><input type="text" name="cantidad"></td>
-             
-                     
-            
           
-            
-        </tr>
-    <%}
-        request.setAttribute("servicios",servicios2);
-        %>
-          
-    </tbody>
-  <td> <input type="submit" value="Confirmar" class="btn btn-info" min="0"/></td>
-         </form>
-</table>
-            
-            
         </div>
 						</form>
 					</div>
