@@ -37,7 +37,6 @@
  
 
 
-
         <title>Buscar</title>
     </head>
     <body>
@@ -58,6 +57,21 @@
 		<div class="row">
 			<div class="col-lg-12">
 				<h1 class="page-header">Buscar Huesped</h1>
+                                
+                                <%String registro=(String)request.getSession().getAttribute("registro");
+
+if(registro!=null){
+    
+
+%>
+    <div class="alert alert-success">
+  <button type="button" class="close" data-dismiss="alert">&times;</button>
+  <strong>¡Felicdades!</strong> <%=registro%>
+</div>
+    <%}
+    
+    request.getSession().setAttribute("registro", null);
+    %>
 			</div>
 		</div><!--/.row-->
 				
@@ -66,37 +80,8 @@
 			<div class="col-lg-12">
 				<div class="panel panel-default">
 					<div class="panel-heading">Huesped</div>
-                                         <%
-        Reserva reserva=(Reserva)session.getAttribute("rhecha");
-        if(reserva!=null){
-            
-        
-        %>
-        
-      <div class="alert alert-success">
-  <button type="button" class="close" data-dismiss="alert">&times;</button>
-  <strong>¡Felicdades!</strong> Reservar hecha satifastoriamente.
-</div>
-        
-        
-        <%}%>
-        
-        <%Cliente huesped = (Cliente)session.getAttribute("huesped");
-        
-        
-        if(huesped!=null){
-                %>
-      <div class="alert alert-success">
-  <button type="button" class="close" data-dismiss="alert">&times;</button>
-  <strong>¡Felicdades!</strong>Registro el Huesped correctamente
-</div>
-     <%
-            
-            session.setAttribute("huesped",null);
-        
-   
-   }%>
-        
+                                        
+                                        
 					<div class="panel-body">
 						<div class="col-md-6">
                                                     <form  method="GET" action="addproducto.jsp" >
@@ -139,6 +124,8 @@
                                              
                                              //busqueda
                                              String busqueda=request.getParameter("cc");
+                                             Reserva yabusco=(Reserva)session.getAttribute("reserv1");
+                                             
         if(busqueda!=null){
             
         
@@ -148,8 +135,11 @@
         ControladorNegocio c= new ControladorNegocio();
         int bus=Integer.parseInt(busqueda);
         List<Servicios>servicios=c.ListarSErvicio();
+        
+        Reserva re=c.buscarReservaporHuesped(bus);
+        session.setAttribute("reserv1", re);
          
-         
+         if(re!=null){
          
         %>
        
@@ -165,7 +155,7 @@
            
         </tr>
     </thead>
-    <form action="agregarproducto.jsp" method="POST">
+   
     <tbody>
          
        
@@ -182,20 +172,26 @@
              <td><%=s.getNombre()%></td>
            
             <td><%=s.getPrecio()%></td>
-             
-            <td><input type="text" name="fname">  </td>  
-            <td><a href="http://google.com" class="btn btn-info" role="button">Go to Google</a></td> 
+              <form action="confirmarpedido.jsp" method="POST">
+            <td><input type="text" name="cantidad">  </td> 
+            <input type="hidden" name="idservicio" value="<%=s.getId()%>">
+            <td><input type="submit" value="agregar servicio" class="btn btn-info" min="0"/></td> 
             
-          
+          </form>
             
         </tr>
-    <%}
-        
+    <%
+      
+      }
+       
+      
+      
+      
         %>
           
     </tbody>
-  <td> <input type="submit" value="agregar servicios" class="btn btn-info" min="0"/></td>
-         </form>
+
+         
 </table>
         
         
@@ -208,8 +204,20 @@
         <br>						
 								
 							</div>
-       <%}%> 
+       <%}else{
+         
+         
+         
         
+       %> 
+       <p>ops este cuarto no esta en reserva en este momento verifique</p>
+       
+       <%
+         
+         }
+         
+         
+  }%>
         
         <br>
         <br>

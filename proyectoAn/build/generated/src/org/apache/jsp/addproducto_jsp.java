@@ -82,7 +82,6 @@ public final class addproducto_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write(" \r\n");
       out.write("\r\n");
       out.write("\r\n");
-      out.write("\r\n");
       out.write("        <title>Buscar</title>\r\n");
       out.write("    </head>\r\n");
       out.write("    <body>\r\n");
@@ -105,6 +104,27 @@ public final class addproducto_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("\t\t<div class=\"row\">\r\n");
       out.write("\t\t\t<div class=\"col-lg-12\">\r\n");
       out.write("\t\t\t\t<h1 class=\"page-header\">Buscar Huesped</h1>\r\n");
+      out.write("                                \r\n");
+      out.write("                                ");
+String registro=(String)request.getSession().getAttribute("registro");
+
+if(registro!=null){
+    
+
+
+      out.write("\r\n");
+      out.write("    <div class=\"alert alert-success\">\r\n");
+      out.write("  <button type=\"button\" class=\"close\" data-dismiss=\"alert\">&times;</button>\r\n");
+      out.write("  <strong>¡Felicdades!</strong> ");
+      out.print(registro);
+      out.write("\r\n");
+      out.write("</div>\r\n");
+      out.write("    ");
+}
+    
+    request.getSession().setAttribute("registro", null);
+    
+      out.write("\r\n");
       out.write("\t\t\t</div>\r\n");
       out.write("\t\t</div><!--/.row-->\r\n");
       out.write("\t\t\t\t\r\n");
@@ -113,45 +133,8 @@ public final class addproducto_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("\t\t\t<div class=\"col-lg-12\">\r\n");
       out.write("\t\t\t\t<div class=\"panel panel-default\">\r\n");
       out.write("\t\t\t\t\t<div class=\"panel-heading\">Huesped</div>\r\n");
-      out.write("                                         ");
-
-        Reserva reserva=(Reserva)session.getAttribute("rhecha");
-        if(reserva!=null){
-            
-        
-        
-      out.write("\r\n");
-      out.write("        \r\n");
-      out.write("      <div class=\"alert alert-success\">\r\n");
-      out.write("  <button type=\"button\" class=\"close\" data-dismiss=\"alert\">&times;</button>\r\n");
-      out.write("  <strong>¡Felicdades!</strong> Reservar hecha satifastoriamente.\r\n");
-      out.write("</div>\r\n");
-      out.write("        \r\n");
-      out.write("        \r\n");
-      out.write("        ");
-}
-      out.write("\r\n");
-      out.write("        \r\n");
-      out.write("        ");
-Cliente huesped = (Cliente)session.getAttribute("huesped");
-        
-        
-        if(huesped!=null){
-                
-      out.write("\r\n");
-      out.write("      <div class=\"alert alert-success\">\r\n");
-      out.write("  <button type=\"button\" class=\"close\" data-dismiss=\"alert\">&times;</button>\r\n");
-      out.write("  <strong>¡Felicdades!</strong>Registro el Huesped correctamente\r\n");
-      out.write("</div>\r\n");
-      out.write("     ");
-
-            
-            session.setAttribute("huesped",null);
-        
-   
-   }
-      out.write("\r\n");
-      out.write("        \r\n");
+      out.write("                                        \r\n");
+      out.write("                                        \r\n");
       out.write("\t\t\t\t\t<div class=\"panel-body\">\r\n");
       out.write("\t\t\t\t\t\t<div class=\"col-md-6\">\r\n");
       out.write("                                                    <form  method=\"GET\" action=\"addproducto.jsp\" >\r\n");
@@ -195,6 +178,8 @@ Cliente huesped = (Cliente)session.getAttribute("huesped");
                                              
                                              //busqueda
                                              String busqueda=request.getParameter("cc");
+                                             Reserva yabusco=(Reserva)session.getAttribute("reserv1");
+                                             
         if(busqueda!=null){
             
         
@@ -206,8 +191,11 @@ Cliente huesped = (Cliente)session.getAttribute("huesped");
         ControladorNegocio c= new ControladorNegocio();
         int bus=Integer.parseInt(busqueda);
         List<Servicios>servicios=c.ListarSErvicio();
+        
+        Reserva re=c.buscarReservaporHuesped(bus);
+        session.setAttribute("reserv1", re);
          
-         
+         if(re!=null){
          
         
       out.write("\r\n");
@@ -218,12 +206,13 @@ Cliente huesped = (Cliente)session.getAttribute("huesped");
       out.write("            <th>id</th>\r\n");
       out.write("            <th>Nombre producto</th>\r\n");
       out.write("             <th>Precio</th>\r\n");
+      out.write("                <th>Cantidad</th>\r\n");
       out.write("              <th>Elegir</th>\r\n");
       out.write("           \r\n");
       out.write("           \r\n");
       out.write("        </tr>\r\n");
       out.write("    </thead>\r\n");
-      out.write("    <form action=\"agregarproducto.jsp\" method=\"POST\">\r\n");
+      out.write("   \r\n");
       out.write("    <tbody>\r\n");
       out.write("         \r\n");
       out.write("       \r\n");
@@ -248,23 +237,30 @@ for(Servicios s:servicios){
       out.write("            <td>");
       out.print(s.getPrecio());
       out.write("</td>\r\n");
-      out.write("             \r\n");
-      out.write("            <td><input type=\"checkbox\" name=\"servicios\" value=\"");
+      out.write("              <form action=\"confirmarpedido.jsp\" method=\"POST\">\r\n");
+      out.write("            <td><input type=\"text\" name=\"cantidad\">  </td> \r\n");
+      out.write("            <input type=\"hidden\" name=\"idservicio\" value=\"");
       out.print(s.getId());
-      out.write("\">  </td>             \r\n");
+      out.write("\">\r\n");
+      out.write("            <td><input type=\"submit\" value=\"agregar servicio\" class=\"btn btn-info\" min=\"0\"/></td> \r\n");
       out.write("            \r\n");
-      out.write("          \r\n");
+      out.write("          </form>\r\n");
       out.write("            \r\n");
       out.write("        </tr>\r\n");
       out.write("    ");
-}
-        
+
+      
+      }
+       
+      
+      
+      
         
       out.write("\r\n");
       out.write("          \r\n");
       out.write("    </tbody>\r\n");
-      out.write("  <td> <input type=\"submit\" value=\"agregar servicios\" class=\"btn btn-info\" min=\"0\"/></td>\r\n");
-      out.write("         </form>\r\n");
+      out.write("\r\n");
+      out.write("         \r\n");
       out.write("</table>\r\n");
       out.write("        \r\n");
       out.write("        \r\n");
@@ -278,9 +274,23 @@ for(Servicios s:servicios){
       out.write("\t\t\t\t\t\t\t\t\r\n");
       out.write("\t\t\t\t\t\t\t</div>\r\n");
       out.write("       ");
-}
+}else{
+         
+         
+         
+        
+       
       out.write(" \r\n");
-      out.write("        \r\n");
+      out.write("       <p>ops este cuarto no esta en reserva en este momento verifique</p>\r\n");
+      out.write("       \r\n");
+      out.write("       ");
+
+         
+         }
+         
+         
+  }
+      out.write("\r\n");
       out.write("        \r\n");
       out.write("        <br>\r\n");
       out.write("        <br>\r\n");

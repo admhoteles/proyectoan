@@ -5,8 +5,10 @@
  */
 package Negocio;
 
+import co.ufps.edu.dao.ItemDao;
 import co.ufps.edu.dao.ReservaDAO;
 import co.ufps.edu.dao.servicioDAO;
+import co.ufps.edu.dto.Item;
 import co.ufps.edu.dto.Reserva;
 import co.ufps.edu.dto.Servicios;
 import java.util.ArrayList;
@@ -19,10 +21,11 @@ import java.util.List;
 public class ControladorReserva {
     private ReservaDAO reserva;
     private servicioDAO servicio;
-    
+    private ItemDao item;
     public ControladorReserva(){
         reserva= new ReservaDAO();
         servicio= new servicioDAO();
+        item = new ItemDao();
         
     }
     
@@ -41,5 +44,10 @@ public class ControladorReserva {
     
     public Servicios listarserviciopor(int id){
         return servicio.lisTarserviciopor(id);
+    }
+    
+    
+    public Item createItem(Item item){
+       return this.item.CreateItem(item);
     }
 }

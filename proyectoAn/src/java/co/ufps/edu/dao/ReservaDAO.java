@@ -122,6 +122,8 @@ ON huesped.id=reserva.id_cliente where huesped.cedula=123456789
                               
                                
 			
+                        }else{
+                            r=null;
                         }
                         
 			

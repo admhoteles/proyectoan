@@ -12,6 +12,7 @@ import Negocio.ControladorReserva;
 import co.ufps.edu.dto.Cliente;
 import co.ufps.edu.dto.EstadoHabitacion;
 import co.ufps.edu.dto.Huesped;
+import co.ufps.edu.dto.Item;
 import co.ufps.edu.dto.Reserva;
 import co.ufps.edu.dto.Servicios;
 import co.ufps.edu.dto.TipoHabitacion;
@@ -108,5 +109,9 @@ public class ControladorNegocio {
      
      public Servicios listarserviciopor(int id){
          return reserva.listarserviciopor(id);
+     }
+     
+     public Item createItem(Item item){
+        return reserva.createItem(item);
      }
 }
