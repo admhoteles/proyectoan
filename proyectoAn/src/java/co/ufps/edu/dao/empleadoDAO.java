@@ -23,8 +23,24 @@ public class empleadoDAO {
     }
     
      public String insertar (empleado emp){
-        String msm="";
-       ResultSet res= getCnn().consultaTabla("select max(id)+1 from empleados;");
+       
+       int nid=obtenerid();
+    
+       String sql ="INSERT INTO empleados(id,id_hotel,nombres,apellidos,contraseña,email,cargo,cedula,telefono) VALUES ("+nid+",1,'"+emp.getNombre()+"','"+emp.getApellidos()+"','"+emp.getContraseña()+"','"+emp.getEmail()+"',"+emp.getCargo()+","+emp.getCedula()+","+emp.getTelefono()+");";
+String msm="error";
+      SQLException exe= getCnn().insertar(sql);
+           if(exe==null){
+              msm= "Ingreso exitoso";
+          }else{
+               System.out.println("insertar "+exe.getMessage()+"    ");
+           }
+              System.out.println("insertar "+msm+"    ");
+     
+     
+        return msm;
+    }
+     public int obtenerid(){
+         ResultSet res= getCnn().consultaTabla("select max(id)+1 from empleados;");
        int id=0; 
        try {
            if(res.next()){
@@ -36,14 +52,8 @@ public class empleadoDAO {
        } catch (SQLException ex) {
            Logger.getLogger(tipohabitaciondao.class.getName()).log(Level.SEVERE, null, ex);
        }
-     getCnn().cerrar();
-       String sql ="INSERT INTO empleados(id,id_hotel,nombre,apellidos,contraseña,email,cargo,cedula,telefono) VALUES ("+id+",1,'"+emp.getNombre()+"','"+emp.getApellidos()+"','"+emp.getContraseña()+"','"+emp.getEmail()+"',"+emp.getCargo()+","+emp.getCedula()+","+emp.getTelefono()+");";
-
-      SQLException exe= getCnn().insertar(sql);
-           getCnn().cerrar();
-     System.out.println("insertar "+msm+"    ");
-        return msm;
-    }
+       return id;
+     }
      public String actualizar(empleado emp){
      ResultSet    msm= getCnn().consultaTabla("SELECT * From empleados where id="+emp.getId()+";");
     try {
@@ -79,11 +89,10 @@ public class empleadoDAO {
         Logger.getLogger(daohabitaciones.class.getName()).log(Level.SEVERE, null, ex);
         
     }
-     getCnn().cerrar();
      return "";
      }
       public String todosempleados() throws SQLException{
-       String sql="select * from empleados join cargoempleado on(empleados.cargo=cargoempleado.id);";
+       String sql="select * from empleados join cargoempleado on(empleados.cargo=cargoempleado.id) order by empleados.id ;";
         ResultSet   msm= getCnn().consultaTabla(sql);
         
        String tabla="<div class=\"panel-footer table-responsive\"><table class=\"table table-striped\">\n" +
@@ -110,7 +119,7 @@ public class empleadoDAO {
                               tabla+="<td class=\"text-center\">"+msm.getString(8)+"</td>";
                               tabla+="<td class=\"text-center\">"+msm.getString(9)+"</td>";
                               tabla+="<td class=\"text-center\">"+"<form class=\"form-horizontal\" action=\"eliminar.jsp\" method=\"post\"><input type=\"hidden\" name=\"id\" value=\""+msm.getInt(1)+"\" ><input type=\"hidden\" name=\"tabla\" value=\"empleado\" ><button type=\"warning\" class=\"btn btn-danger btn-xs\"<a type=\"hidden\" onclick=\"return confirm('Seguro de eliminar?');\"></a>Eliminar</button></form>"
-                                      +"<form class=\"form-horizontal\" action=\"editar_empleado.jsp\" method=\"post\"> <input type=\"hidden\" name=\"id\" value=\""+msm.getInt(1)+"\" ><input type=\"hidden\" name=\"tabla\" value=\"tiposhab\" ><button type=\"warning\" class=\"btn btn-warning btn-xs\">Editar</button></form>"+ "</td>";
+                                      +"<form class=\"form-horizontal\" action=\"editar_empleado.jsp\" method=\"post\"> <input type=\"hidden\" name=\"id\" value=\""+msm.getInt(1)+"\" ><input type=\"hidden\" name=\"tabla\" value=\""+msm.getString(2)+" "+msm.getString(3)+"\" ><button type=\"warning\" class=\"btn btn-warning btn-xs\">Editar</button></form>"+ "</td>";
           tabla+="</tr>";
 
             }
@@ -122,7 +131,7 @@ public class empleadoDAO {
     
     public void eliminar(int id){
    int   msm= getCnn().verificar("DELETE FROM empleados WHERE id="+id+";");
-     getCnn().cerrar();
+    
     
  }
     public clsConn getCnn() {

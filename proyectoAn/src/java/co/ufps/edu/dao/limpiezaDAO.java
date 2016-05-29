@@ -8,6 +8,8 @@ package co.ufps.edu.dao;
 import co.ufps.edu.dto.limpieza;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import ufps.edu.co.utils.conexion.clsConn;
 
 /**
@@ -24,61 +26,89 @@ private clsConn cnn=new clsConn();
    
     
      public String insertar (limpieza lim){
-        String msm="Dureante el ingreso ocurrio un problema";
+        String msm="error";
        
-       
-     getCnn().cerrar();
-       String sql ="INSERT INTO servicioaseo(id_hab, id_emp)VALUES ("+lim.getId_hab()+","+lim.getId_emp()+");";
+  String sql ="INSERT INTO servicioaseo(id_hab, id_emp)VALUES ("+lim.getId_hab()+","+lim.getId_emp()+");";
 
       SQLException exe= getCnn().insertar(sql);
          
           if(exe==null){
               msm= "Ingreso exitoso";
+          }else{
+                System.out.println("insertar "+exe.getMessage()+"    ");
+                
           }
+              
      System.out.println("insertar "+msm+"    ");
-      getCnn().cerrar();
+     
         return msm;
     }
-    /*
-   public String todaspropiedades() throws SQLException{
-       String sql="select * from propiedades;";
+     public String habsinasignar(){
+     ResultSet    msm= getCnn().consultaTabla("select hab.id_hab from habitaciones hab where hab.id_hab not in (select servicioaseo.id_hab from habitaciones right join servicioaseo on( habitaciones.id_hab = servicioaseo.id_hab));");
+       String opcion=""; 
+    try {
+        while(msm.next()){
+             opcion+="<option value=\""+msm.getInt(1)+"\">"+msm.getInt(1)+"</option>"; 
+       
+        }
+    } catch (SQLException ex) {
+        Logger.getLogger(daohabitaciones.class.getName()).log(Level.SEVERE, null, ex);
+    }
+        return opcion;
+     }
+     public String empleados(){
+     ResultSet    msm= getCnn().consultaTabla("select e.id, e.nombres, e.apellidos from empleados e where cargo in (select c.id from cargoempleado c where descripcion = 'Aseadora')");
+       String opcion=""; 
+    try {
+        while(msm.next()){
+             opcion+="<option value=\""+msm.getInt(1)+"\">"+msm.getString(2)+" "+msm.getString(3)+"</option>"; 
+       
+        }
+    } catch (SQLException ex) {
+        Logger.getLogger(daohabitaciones.class.getName()).log(Level.SEVERE, null, ex);
+    }
+        return opcion;
+     }
+     
+    
+   public String Asignadas() throws SQLException{
+       String sql="select e.id, e.nombres, e.apellidos, s.id_hab from empleados e join servicioaseo s on(e.id=s.id_emp);";
         ResultSet   msm= getCnn().consultaTabla(sql);
         
        String tabla="<div class=\"panel-footer table-responsive\"><table class=\"table table-striped\">\n" +
                             "<thead>\n" +
                                "<tr>\n" +
-                                "<th class=\"col text-center\">Identificacion</th>\n" +
-                                "<th class=\"col text-center\">Nombre de la propiedad</th>\n" +
-                                "<th class=\"col text-center\">Incremento</th>\n" +
+                                "<th class=\"col text-center\">Identificacion Habitacion</th>\n" +
+                                "<th class=\"col text-center\">Empleado encargado</th>\n" +
                                 "<th class=\"col text-center\">Acciones</th>\n" +
                                 "</tr>\n" +
                                    "\n" +"<tboby>";
        
        while(msm.next()){
                 tabla+="<tr >";
-                              tabla+="<td class=\"text-center\">"+msm.getInt(1)+"</td>";
-                              tabla+="<td class=\"text-center\">"+msm.getString(2)+"</td>";
-                              tabla+="<td class=\"text-center\">"+msm.getString(3)+"</td>";
-                              tabla+="<td class=\"text-center\">"+"<form class=\"form-horizontal\" action=\"eliminar.jsp\" method=\"post\"><input type=\"hidden\" name=\"id\" value=\""+msm.getInt(1)+"\" ><input type=\"hidden\" name=\"tabla\" value=\"prophab\" ><button type=\"warning\" class=\"btn btn-danger btn-xs\"<a type=\"hidden\" onclick=\"return confirm('Seguro de eliminar?');\"></a>Eliminar</button></form>"
-                                      +"<form class=\"form-horizontal\" action=\"editarpropiedadeshab.jsp\" method=\"post\"> <input type=\"hidden\" name=\"id\" value=\""+msm.getInt(1)+"\" ><input type=\"hidden\" name=\"name\" value=\""+msm.getString(2)+"\" ><button type=\"warning\" class=\"btn btn-warning btn-xs\">Editar</button></form>"+ "</td>";
-          tabla+="</tr>";
+                              tabla+="<td class=\"text-center\">"+msm.getInt(4)+"</td>";
+                              tabla+="<td class=\"text-center\">"+msm.getString(2)+" "+msm.getString(3)+"</td>";
+                              tabla+="<td class=\"text-center\">"+"<form class=\"form-horizontal\" action=\"eliminar.jsp\" method=\"post\"><input type=\"hidden\" name=\"id\" value=\""+msm.getInt(1)+"\" >"
+                                      + "<input type=\"hidden\" name=\"id_hab\" value=\""+msm.getInt(4)+"\" >"
+                                      + "<input type=\"hidden\" name=\"tabla\" value=\"aseo\" >"
+                                      + "<button type=\"warning\" class=\"btn btn-danger btn-xs\"<a type=\"hidden\" onclick=\"return confirm('Seguro de eliminar?');\"></a>Eliminar</button></form>";
+                                     
 
             }
      
       
        tabla+="</tbody></table></div>";
-        getCnn().cerrar();
         return (tabla);
-   } */
+   } 
     
     public clsConn getCnn() {
         return cnn;
-    }/*
-      public void eliminar(int id){
-   int   msm= getCnn().verificar("DELETE FROM propiedades WHERE id="+id+";");
-     getCnn().cerrar();
+    }
+      public void eliminar(int id_emp,int id_hab){
+   int   msm= getCnn().verificar("DELETE FROM servicioaseo WHERE id_emp="+id_emp+"and id_hab="+id_hab+";");
+     
     
- }
+ }/*
       public String actualizar(propiedadeshab proph){
      ResultSet    msm= getCnn().consultaTabla("SELECT * From propiedades where id_hab="+proph.getId()+";");
     try {
