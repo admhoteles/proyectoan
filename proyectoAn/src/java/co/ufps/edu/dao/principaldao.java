@@ -33,65 +33,29 @@ public class principaldao {
 
     public principaldao()   {
   
-      
-       
+     
     }
    
-    
     public principal consultardatos() throws SQLException{
-        this.con = c.conectar("");
-        
-        String resultado="";
-       String sql;
-   System.err.println("holaaaaaaaaaa");
-        sql="SELECT * FROM hotel";
-   principal p=new principal();
-        try {
-            Statement st = con.createStatement();
-            ResultSet rs = st.executeQuery(sql);
-            System.err.println("holaaaaaaaaaa");
-            while(rs.next()){
-                p.setNombre(rs.getString(1));
-                p.setSlogan(rs.getString(2));
-               p.setDir(rs.getString(3));
-               p.setTel(rs.getInt(4));
-               p.setCel(rs.getInt(5));
+        principal p=new principal();
+    ResultSet res= getCnn().consultaTabla("SELECT * FROM hotel;");
+       int id=0; 
+       try {
+          while(res.next()){
+                p.setNombre(res.getString(1));
+                p.setSlogan(res.getString(2));
+               p.setDir(res.getString(3));
+               p.setTel(res.getInt(4));
+               p.setCel(res.getInt(5));
                 
             }
-         
-        } catch (SQLException ex) {
-            Logger.getLogger(principaldao.class.getName()).log(Level.SEVERE, null, ex);
-        }
-         c.cerrarConexion();
-       /*
-        metodo para buscar las habitaciones por tipo 
-        */ 
-   /*  sql="select detalles, precio, tipo, capacidad from habitaciones group by detalles,precio, capacidad,tipo; ";
-    this.con = c.conectar("xd");
-       ArrayList hab= new ArrayList();
-        try {
-            System.err.println("22222");
-            Statement st = con.createStatement();
-            rs = st.executeQuery(sql);
-           habitaciones h;
-            while(rs.next()){
-            h= new habitaciones(rs.getInt(1),rs.getString(2),rs.getInt(3),rs.getInt(4),rs.getString(5),rs.getString(6),rs.getString(7));
-            System.err.println(rs.getInt(1)+rs.getString(2)+rs.getInt(3)+rs.getInt(4)+rs.getString(5)+rs.getString(6)+rs.getString(7));
-            
-            System.err.println("holaaaaaaaaaa");
-
-
-
- hab.add(h);
-            }
-         
-        } catch (SQLException ex) {
-            Logger.getLogger(principaldao.class.getName()).log(Level.SEVERE, null, ex);
-        }*/
-    //   p.setHab(hab);
-     //   c.cerrarConexion();
-       return p; 
-    } 
+           
+       } catch (SQLException ex) {
+           Logger.getLogger(tipohabitaciondao.class.getName()).log(Level.SEVERE, null, ex);
+       }
+       return p;
+    }
+    
     public String habitacionesMostrar(){
         String m="";
       String  sql1="select tipo, foto from habitaciones group by tipo,foto; ";
@@ -143,3 +107,4 @@ public class principaldao {
         return cnn;
     }
 }
+  

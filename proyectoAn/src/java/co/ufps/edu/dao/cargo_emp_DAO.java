@@ -37,7 +37,7 @@ public String insertar (cargo_empleado cargo){
        } catch (SQLException ex) {
            Logger.getLogger(tipohabitaciondao.class.getName()).log(Level.SEVERE, null, ex);
        }
-     getCnn().cerrar();
+     
        String sql ="INSERT INTO cargoempleado(id,descripcion) VALUES ("+id+",'"+cargo.getNombre()+");";
 
       SQLException exe= getCnn().insertar(sql);
@@ -61,7 +61,6 @@ public String insertar (cargo_empleado cargo){
         Logger.getLogger(daohabitaciones.class.getName()).log(Level.SEVERE, null, ex);
         
     }
-     getCnn().cerrar();
      return "";
      }
     
