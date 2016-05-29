@@ -4,7 +4,8 @@
     Author     : EDINSON
 --%>
 
-   <%@page import="co.ufps.edu.dao.servicioDAO"%>
+   <%@page import="co.ufps.edu.dao.limpiezaDAO"%>
+<%@page import="co.ufps.edu.dao.servicioDAO"%>
 <%@page import="co.ufps.edu.dao.cargo_emp_DAO"%>
 <%@page import="co.ufps.edu.dao.empleadoDAO"%>
 <%@page import="co.ufps.edu.dao.estado_reservaDAO"%>
@@ -77,6 +78,11 @@
                          se.eliminar(Integer.parseInt(Param1));
                          response.sendRedirect("Datos_servicios.jsp");
                          break;
+        case "aseo": limpiezaDAO li=new limpiezaDAO();
+                    String Param3= request.getParameter ("id_hab");              
+                    li.eliminar(Integer.parseInt(Param1), Integer.parseInt(Param3));
+                    response.sendRedirect("datos_asignacion_aseo.jsp");
+                    break;
         default:
      
         break;

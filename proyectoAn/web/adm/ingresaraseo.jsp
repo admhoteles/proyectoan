@@ -9,12 +9,14 @@
 
 <%
     
-    String var = request.getParameter("vari").toString();
-    System.out.println("esteee:::::" );
-    dato.setId_emp(Integer.parseInt(var));
-    dato.setId_hab(Integer.parseInt(var));
-    String msg = facade.insertar(dato);
-    System.out.println("esteee:::::" + var);
+    String hab = request.getParameter("hab").toString();
+    String emp = request.getParameter("emp").toString();
+    System.out.println("esteee:::::" + emp+"----------"+hab);
+    dato.setId_emp(Integer.parseInt(emp));
+    dato.setId_hab(Integer.parseInt(hab));
+    String msg = facade.insertar(dato);//esto le esta dando error al insertar porq?
+    
+    System.out.println("esteee22222:::::" + msg);
     
     
     out.print(msg);
