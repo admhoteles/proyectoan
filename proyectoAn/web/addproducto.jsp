@@ -88,7 +88,7 @@ if(registro!=null){
 							<form role="form">
 							
 								<div class="form-group">
-									<label>Digite la cedula del huesped</label>
+									<label>Digite El numero del cuarto</label>
 									<input class="form-control" placeholder="Cedula" name="cc">
 								</div>
 																

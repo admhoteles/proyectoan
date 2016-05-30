@@ -5,6 +5,8 @@
  */
 package co.ufps.edu.dto;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author macaco
@@ -50,6 +52,6 @@ public class TipoHabitacion {
     
     
     
-    
+  
     
 }

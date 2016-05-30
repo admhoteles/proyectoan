@@ -60,6 +60,9 @@
         
        
        Cliente c= n.ListarClientePorid(reserva.getId_cliente());
+       
+       
+       
        %>
 		
 		<div class="row">

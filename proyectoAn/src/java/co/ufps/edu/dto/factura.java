@@ -6,6 +6,7 @@
 package co.ufps.edu.dto;
 
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.Calendar;
 
 
@@ -84,5 +85,10 @@ public class factura {
     }
 
     
+    
+    public int total(ArrayList<Servicios>servi, tipo_habitacion t,Calendar fechai,Calendar fehcafin){
+        
+      return 0;  
+    }
     
 }
