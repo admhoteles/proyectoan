@@ -114,4 +114,8 @@ public class ControladorNegocio {
      public Item createItem(Item item){
         return reserva.createItem(item);
      }
+     
+     public Reserva buscarReservapor(int id){
+        return reserva.buscarReservaporid(id);
+     }
 }

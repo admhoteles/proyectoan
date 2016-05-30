@@ -4,16 +4,16 @@
     Author     : macaco
 --%>
 
+<%@page import="co.ufps.edu.dto.factura"%>
+<%@page import="java.util.GregorianCalendar"%>
+<%@page import="java.util.Calendar"%>
+<%@page import="co.ufps.edu.dto.Cliente"%>
+<%@page import="co.ufps.edu.dto.Reserva"%>
+<%@page import="facade.ControladorNegocio"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
-    </head>
-    <body>
-        <h1>Hello World!</h1>
-        <jsp:include page="menu.jsp" />
+
+        
         
         <html>
     <head>
@@ -24,13 +24,43 @@
 <link href="css/bootstrap-table.css" rel="stylesheet">
 <link href="css/styles.css" rel="stylesheet">
 
+
+
+
 <!--Icons-->
 <script src="js/lumino.glyphs.js"></script>
         <title>Facturar</title>
     </head>
+    
+    
     <body>
-       
+       <jsp:include page="menu.jsp" />
      
+       
+       <%int id=Integer.parseInt(request.getParameter("genreservaid"));
+       
+       ControladorNegocio n= new ControladorNegocio();
+       
+       
+       Reserva reserva=n.buscarReservapor(id);
+          Calendar fecha= new GregorianCalendar();
+          fecha=Calendar.getInstance();
+          
+          //reserva finalizada
+          reserva.setFechafin(fecha);
+          
+          
+          factura f = new factura();
+          
+          
+          f.setFechagenerada(fecha);
+          f.setIdReserva(reserva.getId());
+          f.setId_hab(reserva.getId_hab());
+          f.setId_huesped(reserva.getId_cliente());
+        
+       
+       Cliente c= n.ListarClientePorid(reserva.getId_cliente());
+       %>
 		
 		<div class="row">
 			<div class="col-lg-12">
@@ -98,9 +128,9 @@
 						<table data-toggle="table" id="table-style"  data-row-style="rowStyle">
 						    <thead>
 						    <tr>
-						        <th data-field="id" data-align="right" >id</th>
-						        <th data-field="name" >Nombre</th>
-						        <th data-field="price" >Nacionlaidad</th>
+						        <th data-field="id" data-align="right" ><%=c.getId()%></th>
+						        <th data-field="name" ><%=c.getNombre()%></th>
+						        <th data-field="price" ><%=c.getNacionalidad()%></th>
 						    </tr>
 						    </thead>
                                                                                    <tbody>
@@ -140,5 +170,4 @@
     </body>
 </html>
 
-    </body>
-</html>
+    

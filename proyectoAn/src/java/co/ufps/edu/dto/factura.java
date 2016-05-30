@@ -6,6 +6,7 @@
 package co.ufps.edu.dto;
 
 import java.sql.Date;
+import java.util.Calendar;
 
 
 public class factura {
@@ -18,41 +19,70 @@ public class factura {
      */
     
     
-    private int serial;
-    private String descripccion;
-    private Date fechagenerada;
-    private int idasginada;
+    private int id;
+    private String servicios;
+    private Calendar fechagenerada;
+    private int idReserva;
+    private int total;
+    private int id_huesped;
+    private int id_hab;
 
-    public int getSerial() {
-        return serial;
+    public int getId() {
+        return id;
     }
 
-    public void setSerial(int serial) {
-        this.serial = serial;
+    public void setId(int id) {
+        this.id = id;
     }
 
-    public String getDescripccion() {
-        return descripccion;
+    public String getServicios() {
+        return servicios;
     }
 
-    public void setDescripccion(String descripccion) {
-        this.descripccion = descripccion;
+    public void setServicios(String servicios) {
+        this.servicios = servicios;
     }
 
-    public Date getFechagenerada() {
+    public Calendar getFechagenerada() {
         return fechagenerada;
     }
 
-    public void setFechagenerada(Date fechagenerada) {
+    public void setFechagenerada(Calendar fechagenerada) {
         this.fechagenerada = fechagenerada;
     }
 
-    public int getIdasginada() {
-        return idasginada;
+    public int getIdReserva() {
+        return idReserva;
     }
 
-    public void setIdasginada(int idasginada) {
-        this.idasginada = idasginada;
+    public void setIdReserva(int idReserva) {
+        this.idReserva = idReserva;
     }
+
+    public int getTotal() {
+        return total;
+    }
+
+    public void setTotal(int total) {
+        this.total = total;
+    }
+
+    public int getId_huesped() {
+        return id_huesped;
+    }
+
+    public void setId_huesped(int id_huesped) {
+        this.id_huesped = id_huesped;
+    }
+
+    public int getId_hab() {
+        return id_hab;
+    }
+
+    public void setId_hab(int id_hab) {
+        this.id_hab = id_hab;
+    }
+
+    
     
 }

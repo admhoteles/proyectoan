@@ -2,6 +2,22 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group/>
+        <group>
+            <file>file:/C:/Users/macaco/Documents/GitHub/proyectoan/proyectoAn/web/registrado.jsp</file>
+            <file>file:/C:/Users/macaco/Documents/GitHub/proyectoan/proyectoAn/web/generarf.jsp</file>
+            <file>file:/C:/Users/macaco/Documents/GitHub/proyectoan/proyectoAn/web/addproducto.jsp</file>
+            <file>file:/C:/Users/macaco/Documents/GitHub/proyectoan/proyectoAn/src/java/co/ufps/edu/dto/Item.java</file>
+            <file>file:/C:/Users/macaco/Documents/GitHub/proyectoan/proyectoAn/src/java/facade/ControladorNegocio.java</file>
+            <file>file:/C:/Users/macaco/Documents/GitHub/proyectoan/proyectoAn/src/java/co/ufps/edu/dao/ClientesDAO.java</file>
+            <file>file:/C:/Users/macaco/Documents/GitHub/proyectoan/proyectoAn/src/java/co/ufps/edu/dao/ItemDao.java</file>
+            <file>file:/C:/Users/macaco/Documents/GitHub/proyectoan/proyectoAn/src/java/co/ufps/edu/dao/ReservaDAO.java</file>
+            <file>file:/C:/Users/macaco/Documents/GitHub/proyectoan/proyectoAn/src/java/co/ufps/edu/dao/servicioDAO.java</file>
+            <file>file:/C:/Users/macaco/Documents/GitHub/proyectoan/proyectoAn/web/apartar.jsp</file>
+            <file>file:/C:/Users/macaco/Documents/GitHub/proyectoan/proyectoAn/src/java/Negocio/ControladorReserva.java</file>
+            <file>file:/C:/Users/macaco/Documents/GitHub/proyectoan/proyectoAn/web/buscar.jsp</file>
+            <file>file:/C:/Users/macaco/Documents/GitHub/proyectoan/proyectoAn/web/buscarReserva.jsp</file>
+            <file>file:/C:/Users/macaco/Documents/GitHub/proyectoan/proyectoAn/web/confirmarpedido.jsp</file>
+            <file>file:/C:/Users/macaco/Documents/GitHub/proyectoan/proyectoAn/web/prueba2.jsp</file>
+        </group>
     </open-files>
 </project-private>

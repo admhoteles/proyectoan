@@ -99,7 +99,7 @@
 							
 								
 					 <%
-                                             
+                                            
                                              //objetos sessiones
                                              
                                             
@@ -119,8 +119,9 @@
         int bus=Integer.parseInt(busqueda);
         Reserva reserva2=c.buscarReservaporHuesped(bus);
          SimpleDateFormat sdf = new SimpleDateFormat("yy-MM-dd HH:mm:ss");
+        
          
-         
+         if(reserva2!=null){
         %>
        
         <table class="table">
@@ -147,10 +148,11 @@
             <td><%=reserva2.getId()%></td>
             <%Cliente  creservado=c.ListarClientePorid(reserva2.getId_cliente());%>
              <td><%=creservado.getNombre()%></td>
-            <td>106  </td>
+            <td><%=reserva2.getId_hab()%> </td>
             <td><%=sdf.format(reserva2.getFechainicio().getTime())%></td>
-               <td><%=sdf.format(reserva2.getFechafin().getTime())%></td>
-              <%//session.setAttribute("reserva",reserva);%>
+               <td>?</td>
+               <input type="hidden" name="genreservaid" value="<%=reserva2.getId()%>">
+              
             <td> <input type="submit" value="Generar Factura" class="btn btn-info" min="0"/></td>
             
             </form>
@@ -161,11 +163,20 @@
 </table>
         
         
-        <%}
+        <%
+        
+        
+         }else{
+        
         
         %>			
 								
-				
+        <p>opps ese cuarto no esta en reserva</p>	
+        
+        <%
+         }        
+ 
+ }%>
 								
 		 <br>
         <br>

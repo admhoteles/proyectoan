@@ -148,6 +148,74 @@ ON huesped.id=reserva.id_cliente where huesped.cedula=123456789
                 return r;
     
 }
+      
+      
+      
+      
+         public Reserva ListarReservaPoid(int id){
+      
+		Connection con=null;
+		PreparedStatement ps=null;
+		ResultSet rst=null;
+                Calendar fechainicio= new GregorianCalendar();
+                Calendar fechafin=new GregorianCalendar();
+                
+               Reserva r=new Reserva() ;
+		try {
+			if(conexion==null) conexion= new Conexion();
+			if(conexion.getConnection()==null) con = conexion.conectar("");
+			else con= conexion.getConnection();
+			String sql = "SELECT * FROM reserva where id= ?";
+			ps = con.prepareStatement(sql);
+                       ps.setInt(1,id);
+			
+                       
+			rst = ps.executeQuery();
+			
+			if(rst.next()){
+                            
+				
+                                r.setEstado(rst.getInt("estado"));
+                                r.setId(rst.getInt("id"));
+                                //asi parseamos la fecha de  tiemstamp a Calendar nota: los milisegundos no pasan todos
+                             fechainicio.setTimeInMillis(rst.getTimestamp("fechainicial").getTime());
+                             fechafin.setTimeInMillis(rst.getTimestamp("fechafin").getTime());
+                             
+                             r.setFechainicio(fechainicio);
+                             r.setFechafin(fechafin);
+                             
+                             r.setId_cliente(rst.getInt("id_cliente"));
+                              r.setId_hab(rst.getInt("id_hab"));
+                              
+                               
+			
+                        }else{
+                            r=null;
+                        }
+                        
+			
+		} catch (Exception e) {
+                    System.out.println("error "+e.toString());
+			e.printStackTrace();
+			conexion.escribirLogs("UsuarioDao", "registrarUsuario", e.toString());
+                       
+		} finally {
+			try {
+				ps.close();
+				con.close();
+			} catch (SQLException e2) {
+				e2.printStackTrace();
+				conexion.escribirLogs("UsuarioDao", "registrarUsuario", e2.toString());
+			}
+						
+			ps=null;
+			con=null;
+    }
+                
+                return r;
+    
+}
+    
     
     
 }

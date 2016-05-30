@@ -50,4 +50,8 @@ public class ControladorReserva {
     public Item createItem(Item item){
        return this.item.CreateItem(item);
     }
+    
+    public Reserva buscarReservaporid(int id){
+        return reserva.ListarReservaPoid(id);
+    }
 }
