@@ -5,6 +5,7 @@
  */
 package facade;
 
+import Negocio.ContorladorEmpleado;
 import Negocio.ContorladorHuesped;
 import Negocio.ControladorClientes;
 import Negocio.ControladorHabitacion;
@@ -16,6 +17,7 @@ import co.ufps.edu.dto.Item;
 import co.ufps.edu.dto.Reserva;
 import co.ufps.edu.dto.Servicios;
 import co.ufps.edu.dto.TipoHabitacion;
+import co.ufps.edu.dto.empleado;
 import co.ufps.edu.dto.habitaciones;
 import java.util.List;
 
@@ -30,6 +32,8 @@ public class ControladorNegocio {
     private ControladorClientes cliente;
     private ControladorReserva reserva;
     
+    
+   private ContorladorEmpleado empleado;
 
     public ControladorNegocio() {
         
@@ -37,7 +41,7 @@ public class ControladorNegocio {
         h=new ControladorHabitacion();
         cliente= new ControladorClientes();
         reserva = new ControladorReserva();
-        
+        empleado = new ContorladorEmpleado();
     }
     
     public List<Huesped> listarUsuario(){
@@ -117,5 +121,10 @@ public class ControladorNegocio {
      
      public Reserva buscarReservapor(int id){
         return reserva.buscarReservaporid(id);
+     }
+     
+     
+     public empleado login(empleado emp){
+         return empleado.login(emp);
      }
 }

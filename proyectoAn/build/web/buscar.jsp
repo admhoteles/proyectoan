@@ -4,6 +4,7 @@
     Author     : macaco
 --%>
 
+<%@page import="co.ufps.edu.dto.empleado"%>
 <%@page import="co.ufps.edu.dto.Reserva"%>
 <%@page import="co.ufps.edu.dto.Cliente"%>
 <%@page import="co.ufps.edu.dto.cuarto"%>
@@ -34,7 +35,12 @@
 <!--Icons-->
 <script src="js/lumino.glyphs.js"></script>
 
+ <%
+  ControladorNegocio c4 = new ControladorNegocio();
+ empleado emp=(empleado)session.getAttribute("EmpleadoLogin");
+ if(emp!=null){
  
+ %>
 
 
 
@@ -310,6 +316,13 @@ $(document).ready(function(){
     );
   
 });
+
+
+<%}
+ else{
+     response.sendRedirect("login.jsp"); 
+ }
+%>
 </script>
 </body>
 </html>
