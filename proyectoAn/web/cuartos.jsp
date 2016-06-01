@@ -4,6 +4,7 @@
     Author     : macaco
 --%>
 
+<%@page import="co.ufps.edu.dto.empleado"%>
 <%@page import="co.ufps.edu.dto.habitaciones"%>
 <%@page import="java.util.List"%>
 <%@page import="java.util.ArrayList"%>
@@ -29,7 +30,12 @@
    
 	<jsp:include page="menu.jsp" />
 				
-		
+		<%
+  ControladorNegocio c4 = new ControladorNegocio();
+ empleado emp=(empleado)session.getAttribute("EmpleadoLogin");
+ if(emp!=null){
+ 
+ %>
 		<div class="row">
 			<div class="col-lg-12">
 				<div class="panel panel-default">
@@ -41,6 +47,10 @@
                                            
                       
 						<div class="icon-grid">
+                                                    
+                                                    
+                                                    
+                                                    
                                                      <% 
         ControladorNegocio c= new ControladorNegocio();
   List<habitaciones> habitaciones=c.listarh();
@@ -106,6 +116,8 @@
 		
 		
 	</div><!--/.main-->
+        
+        
 
 	<script src="js/jquery-1.11.1.min.js"></script>
 	<script src="js/bootstrap.min.js"></script>
@@ -128,6 +140,12 @@
 		$(window).on('resize', function () {
 		  if ($(window).width() <= 767) $('#sidebar-collapse').collapse('hide')
 		})
-	</script>	
+	</script>
+        
+        <%}
+ else{
+     response.sendRedirect("login.jsp"); 
+ }
+%>
 </body>
 </html>

@@ -1,5 +1,6 @@
 
 
+<%@page import="co.ufps.edu.dto.empleado"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="co.ufps.edu.dto.Reserva"%>
 <%@page import="co.ufps.edu.dto.Cliente"%>
@@ -32,7 +33,12 @@
 <script src="js/lumino.glyphs.js"></script>
 
  
-
+<%
+  ControladorNegocio c4 = new ControladorNegocio();
+ empleado emp=(empleado)session.getAttribute("EmpleadoLogin");
+ if(emp!=null){
+ 
+ %>
 
 
         <title>Buscar</title>
@@ -223,6 +229,11 @@
 		</div><!-- /.row -->
 		
 	</div><!--/.main-->
+        <%}
+ else{
+     response.sendRedirect("login.jsp"); 
+ }
+%>
 
 	<script src="js/jquery-1.11.1.min.js"></script>
 	<script src="js/bootstrap.min.js"></script>
