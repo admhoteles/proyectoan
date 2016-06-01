@@ -43,7 +43,7 @@
     Item itemf=n.createItem(item);
     
     if(itemf!=null){
-        request.getSession().setAttribute("registro", "se agrego el producto  "+servi.getNombre()+" al cuarto "+re.getId_hab());
+        request.getSession().setAttribute("registro", "se agrego el producto con nombre  "+servi.getNombre()+" al cuarto "+re.getId_hab());
        response.sendRedirect("addproducto.jsp"); 
     }
        
